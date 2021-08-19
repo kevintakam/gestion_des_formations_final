@@ -8,6 +8,6 @@ namespace gestion_des_formations_final.Data
     public class TypeDocument
     {
         public int TypeDocumentId { get; set; }
-        public string intitule { get; set; }
+        public string Intitule { get; set; }
     }
 }
