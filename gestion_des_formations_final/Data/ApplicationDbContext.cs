@@ -11,6 +11,7 @@ namespace gestion_des_formations_final.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
         }
     }
 }
