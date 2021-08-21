@@ -7,12 +7,12 @@ namespace gestion_des_formations_final.Data
 {
     public class Session
     {
-        public int idSession { get; set; }
-        public string intitule { get; set; }
+        public int SessionId { get; set; }
+        public string Intitule { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
         public string Statut { get; set; }
-        public int Evalation { get; set; }
+        public int Evaluation { get; set; }
         public string Examen { get; set; }
     }
 }

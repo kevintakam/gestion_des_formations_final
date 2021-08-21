@@ -7,7 +7,7 @@ namespace gestion_des_formations_final.Data
 {
     public class Salle
     {
-        public int idSalle { get; set; }
-        public string designation { get; set; }
+        public int SalleId { get; set; }
+        public string Designation { get; set; }
     }
 }

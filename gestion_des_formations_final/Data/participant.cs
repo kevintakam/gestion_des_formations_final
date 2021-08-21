@@ -13,7 +13,7 @@ namespace gestion_des_formations_final.Data
         public string Email { get; set; }
         public int Telephone { get; set; }
         public string Adresse { get; set; }
-        public string statut { get; set; }
+        public string Statut { get; set; }
         public string ACertif { get; set; }
 
     }
