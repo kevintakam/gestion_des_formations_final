@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace gestion_des_formations_final.Data
+namespace gestion_des_formations_final.Models
 {
-    public class Salle
+    public class Lieu
     {
-        public int SalleId { get; set; }
+        public int LieuId { get; set; }
         public string Designation { get; set; }
     }
 }
