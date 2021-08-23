@@ -14,5 +14,11 @@ namespace gestion_des_formations_final.Models
         public string Statut { get; set; }
         public int Evaluation { get; set; }
         public string Examen { get; set; }
+        public int SalleId { get; set; }
+        public int FormationId { get; set; }
+        public virtual Salle Salle { get; set; }
+        public virtual Formation Formation { get; set; }
+        public virtual ICollection<Prester> Prester { get; set; }
+        public virtual ICollection<Assister> Assister { get; set; }
     }
 }

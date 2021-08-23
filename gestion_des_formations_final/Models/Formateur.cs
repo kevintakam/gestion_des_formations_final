@@ -14,5 +14,7 @@ namespace gestion_des_formations_final.Models
         public string Adresse { get; set; }
         public int Telephone { get; set; }
         public string Type { get; set; }
+        public virtual ICollection<Prester> APrester
+        { get; set; }
     }
 }
