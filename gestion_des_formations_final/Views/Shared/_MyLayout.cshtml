@@ -1,6 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Gestion des formations";
-}
+﻿
 <!DOCTYPE html>
 
 <html>
@@ -33,7 +31,7 @@
                 <ul class="nav pcoded-inner-navbar ">
 
                     <li class="">
-                        <a href="#!"><span class="pcoded-micon"><i class="fas fa-fw fa-tachometer-alt"></i></span><span class="pcoded-mtext">Tableau de Bord</span></a>
+                        <a asp-controller="Home" asp-action="Index"><span class="pcoded-micon"><i class="fas fa-fw fa-tachometer-alt"></i></span><span class="pcoded-mtext">Tableau de Bord</span></a>
                     </li>
 
                     <li class="nav-item pcoded-menu-caption">
@@ -41,9 +39,8 @@
                     <li class="nav-item pcoded-hasmenu">
                         <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-fw fa-th"></i></span><span class="pcoded-mtext">Gestion Formations</span></a>
                         <ul class="pcoded-submenu">
-                            <li><a asp-controller="Formation" asp-action="Index">Ajouter Formation</a></li>
-                            <li><a asp-controller="Formation" asp-action="Mesformations">Formations</a></li>
-
+                            <li><a asp-controller="Formation" asp-action="Index"> Nos Formations</a></li>
+                            <li><a> Nos Formateurs</a></li>
                             <li class="pcoded-hasmenu">
                                 <a href="#!"><span class="pcoded-micon"><i class="fas fa-x fa-table"></i></span><span class="pcoded-mtext">Sessions</span></a>
                                 <ul class="pcoded-submenu">
@@ -58,13 +55,6 @@
                                 <ul class="pcoded-submenu">
                                     <li><a href="#">Génerer un document</a></li>
                                     <li><a href="#" t>Nos archives</a></li>
-                                </ul>
-                            </li>
-                            <li class="pcoded-hasmenu">
-                                <a href="#!"><span class="pcoded-micon"><i class="fas fa-x fa-users"></i></span><span class="pcoded-mtext">Formateurs</span></a>
-                                <ul class="pcoded-submenu">
-                                    <li><a href="#">Ajouter un formateur </a></li>
-                                    <li><a href="#">Mes formateurs</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -101,17 +91,9 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
-                    <div class="search-bar">
-                        <input type="text" class="form-control border-0 shadow-none" placeholder="Search here">
-                        <button type="button" class="close" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </li>
-                <li class="nav-item">
                     <a href="#!" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a>
                 </li>
+                <li class="breadcrumb-item"><a href="#!">@ViewBag.second_title</a></li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li>
@@ -130,7 +112,7 @@
                                     </div>
                                 </li>
 
- 
+
                             </ul>
                             <div class="noti-footer">
                                 <a href="#!">voir tout</a>
@@ -140,7 +122,7 @@
                 </li>
                 <li>
                     <div class="dropdown">
-                        <a href="#" class="displayChatbox dropdown-toggle"><i class="icon feather icon-mail"></i></a>
+                        <!-- <a href="#" class="displayChatbox dropdown-toggle"><i class="icon feather icon-mail"></i></a>-->
                     </div>
                 </li>
                 <li>
@@ -250,7 +232,7 @@
     <section class="header-chat">
         <!--partie réservée au nom utilisateur connecté-->
         <div class="h-list-header">
-            <h6>Josephin Doe</h6>
+            <h6>Audrey Demgne</h6>
             <a href="#!" class="h-back-user-list"><i class="feather icon-chevron-left"></i></a>
         </div>
         <!--fin pour la partie réservée au nom utilisateur connecté-->
@@ -259,7 +241,7 @@
             <div class="main-chat-cont scroll-div">
                 <div class="main-friend-chat">
                     <div class="media chat-messages">
-                        <a class="media-left photo-table" href="#!"><img class="media-object img-radius img-radius m-t-5" src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image"></a>
+                        <a class="media-left photo-table" href="#!"><img class="media-object img-radius img-radius m-t-5" src="~/assets/images/undraw_profile_3.svg" alt="Generic placeholder image"></a>
                         <div class="media-body chat-menu-content">
                             <div class="">
                                 <p class="chat-cont">hello tell me something</p>
@@ -275,10 +257,10 @@
                             </div>
                             <p class="chat-time">8:22 a.m.</p>
                         </div>
-                        <a class="media-right photo-table" href="#!"><img class="media-object img-radius img-radius m-t-5" src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image"></a>
+                        <a class="media-right photo-table" href="#!"><img class="media-object img-radius img-radius m-t-5" src="~/assets/images/undraw_profile_1.svg" alt="Generic placeholder image"></a>
                     </div>
                     <div class="media chat-messages">
-                        <a class="media-left photo-table" href="#!"><img class="media-object img-radius img-radius m-t-5" src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image"></a>
+                        <a class="media-left photo-table" href="#!"><img class="media-object img-radius img-radius m-t-5" src="~/assets/images/undraw_profile_3.svg" alt="Generic placeholder image"></a>
                         <div class="media-body chat-menu-content">
                             <div class="">
                                 <p class="chat-cont">can you help me?</p>
@@ -297,7 +279,7 @@
                 <a href="#!" class="input-group-prepend btn btn-success btn-attach">
                     <i class="feather icon-paperclip"></i>
                 </a>
-                <input type="text" name="h-chat-text" class="form-control h-auto h-send-chat" placeholder="Write hear . . ">
+                <input type="text" name="h-chat-text" class="form-control h-auto h-send-chat" placeholder="Ecrire ici . . ">
                 <button type="submit" class="input-group-append btn-send btn btn-primary">
                     <i class="feather icon-message-circle"></i>
                 </button>
