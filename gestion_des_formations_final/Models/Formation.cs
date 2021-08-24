@@ -9,7 +9,7 @@ namespace gestion_des_formations_final.Models
     {
         public int FormationId { get; set; }
         public string Intitule { get; set; }
-        public float Prix { get; set; }
+        public int Prix { get; set; }
         public int Duree { get; set; }
         public bool FormationCertifiee { get; set; }
     }
