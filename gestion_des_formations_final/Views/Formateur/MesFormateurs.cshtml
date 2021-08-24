@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["title1"] = " Formateurs";
+    ViewData["title2"] = " Gestion des Formations ";
+}
+
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+       
+        <div class="row">
+            <!-- [ form-element ] start -->
+            <div class="col-sm-12">
+                <div class="card">   
+                    <div class="card-body">
+                        <h5>Ajouter un Formateur</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form class="center">
+                                    <div class="form-group">
+                                        <label for="intituleformation">Nom Formateur*</label>
+                                        <input type="text" class="mb-3 form-control form-control-sm" id="intituleformation" placeholder="Entrer le nom de la formation" required="" name="intituleformation">
+                                        <small id="formationhelp" class="form-text text-muted text-danger"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="intituleformation">Prenom Formateur*</label>
+                                        <input type="text" class="mb-3 form-control form-control-sm" id="intituleformation" placeholder="Entrer le nom de la formation" required="" name="intituleformation">
+                                        <small id="formationhelp" class="form-text text-muted text-danger"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mailformateur">Email Formateur*</label>
+                                        <input type="text" class="mb-3 form-control form-control-sm" id="intituleformation" placeholder="Entrer le nom de la formation" required="" name="intituleformation">
+                                        <small id="formationhelp" class="form-text text-muted text-danger"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="adresseformateur">Adresse Formateur*</label>
+                                        <input type="text" class="mb-3 form-control form-control-sm" id="intituleformation" placeholder="Entrer le nom de la formation" required="" name="intituleformation">
+                                        <small id="formationhelp" class="form-text text-muted text-danger"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="telformateur">Téléphone Formateur*</label>
+                                        <input type="text" class="mb-3 form-control form-control-sm" id="intituleformation" placeholder="Entrer le nom de la formation" required="" name="intituleformation">
+                                        <small id="formationhelp" class="form-text text-muted text-danger"></small>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group" style="margin-left:10px;">
+                                            <label for="typeformateur">Type Formateur*</label>
+                                            <select id="typeformateu" class="form-control" name="prix">
+                                                <option selected="">--choisir une option--</option>
+                                                <option>Externe</option>
+                                                <option>Interne</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn  btn-primary fa-pull-right">Créer la formation</button>
+                                </form>
+                            </div>
+
+                        </div>
+                        <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function () {
+                                'use strict';
+                                window.addEventListener('load', function () {
+                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    // Loop over them and prevent submission
+                                    var validation = Array.prototype.filter.call(forms, function (form) {
+                                        form.addEventListener('submit', function (event) {
+                                            if (form.checkValidity() === false) {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                            }
+                                            form.classList.add('was-validated');
+                                        }, false);
+                                    });
+                                }, false);
+                            })();
+                        </script>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- [ form-element ] end -->
+
+        </div>
+    </div>
+</section>
