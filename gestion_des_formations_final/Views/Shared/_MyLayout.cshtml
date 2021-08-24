@@ -12,6 +12,11 @@
     <meta name="author" content="Template secel" />
     <!-- Favicon icon -->
     <link rel="icon" href="~/assets/images/LogoSecelSansFond.PNG" type="image/x-icon">
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- data tables css -->
+    <link rel="stylesheet" href="assets/css/plugins/dataTables.bootstrap4.min.css">
 
     <!-- vendor css -->
     <link rel="stylesheet" href="~/assets/css/style.css">
@@ -40,7 +45,7 @@
                         <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-fw fa-th"></i></span><span class="pcoded-mtext">Gestion Formations</span></a>
                         <ul class="pcoded-submenu">
                             <li><a asp-controller="Formation" asp-action="Index"> Nos Formations</a></li>
-                            <li><a> Nos Formateurs</a></li>
+                            <li><a asp-controller="Formateur" asp-action="Index"> Nos Formateurs</a></li>
                             <li class="pcoded-hasmenu">
                                 <a href="#!"><span class="pcoded-micon"><i class="fas fa-x fa-table"></i></span><span class="pcoded-mtext">Sessions</span></a>
                                 <ul class="pcoded-submenu">
@@ -60,12 +65,8 @@
                         </ul>
                     </li>
 
-                                    <li><a href="#" target="_blank">Mes formateurs</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                   
+
+
                     <li class="nav-item pcoded-menu-caption">
                     <li class="pcoded-hasmenu">
                         <a href="#!"><span class="pcoded-micon"><i class="fas fa-fw fa-cog"></i></span><span class="pcoded-mtext">Administration</span></a>
@@ -178,7 +179,7 @@
             </div>
             <!--fin chat-->
             <!--debut user-->
-            <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">  
+            <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
             </div>
             <!--fin user-->
             <!--debut settings-->
@@ -309,5 +310,8 @@
 
     <!-- custom-chart js -->
     <script src="~/assets/js/pages/dashboard-main.js"></script>
+    <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script src="~/assets/js/plugins/dataTables.bootstrap4.min.js"></script>
+    <script src="~/assets/js/pages/data-basic-custom.js"></script>
 </body>
 </html>

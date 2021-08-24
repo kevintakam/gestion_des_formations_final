@@ -10,7 +10,15 @@ namespace gestion_des_formations_final.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            ViewData["Title"] = "Gestion des formations";
+            ViewData["second_title"] = "Nos Formateurs";
+            return View(ViewData);
+        }
+        public IActionResult Mesformateurs()
+        {
+            ViewData["Title"] = "Gestion des formations";
+            ViewData["second_title"] = "Nos Formateurs";
+            return View(ViewData);
         }
     }
 }
