@@ -14,10 +14,10 @@ namespace gestion_des_formations_final.Controllers
             ViewData["second_title"] = "Nos Formations";
             return View(ViewData);
         }
-        public IActionResult Mesformations()
+        public IActionResult AjouterFormation()
         {
             ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Nos Formations";
+            ViewData["second_title"] = "Formation >  Nouvelle Formation";
             return View(ViewData);
         }
     }
