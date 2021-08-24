@@ -9,5 +9,8 @@ namespace gestion_des_formations_final.Models
     {
         public int CertificationId { get; set; }
         public string Designation { get; set; }
+        public int OrganismeId { get; set; }
+
+        public virtual Organisme Organisme { get; set; }
     }
 }

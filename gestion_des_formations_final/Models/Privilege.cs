@@ -9,5 +9,7 @@ namespace gestion_des_formations_final.Models
     {
         public int PrivilegeId { get; set; }
         public string Designation { get; set; }
+        public int RoleId { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

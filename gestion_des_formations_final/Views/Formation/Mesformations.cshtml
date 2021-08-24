@@ -1,0 +1,104 @@
+﻿
+
+@{
+    ViewData["title"] = "Formations";
+    ViewData["second_title"] = "Nouvelle Formation";
+}
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">@ViewBag.second_title</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">@ViewBag.title</a></li>
+                            <li class="breadcrumb-item"><a href="#!">@ViewBag.second_title</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="row">
+            <!-- [ form-element ] start -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Ajouter une @ViewBag.second_title</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5>Formulaire</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form class="center">
+                                    <div class="form-group">
+                                        <label for="intituleformation">Intitule Formation*</label>
+                                        <input type="text" class="mb-3 form-control form-control-sm" id="intituleformation" placeholder="Entrer le nom de la formation" required="" name="intituleformation">
+                                        <small id="formationhelp" class="form-text text-muted text-danger"></small>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group" style="margin-left:10px;">
+                                            <label for="Prix">Prix de la formation*</label>
+                                            <select id="prix" class="form-control" name="prix">
+                                                <option selected="">choisir une option</option>
+                                                <option>10000 </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" style="margin-left:150px;">
+                                            <label for="Duree">Durée de la formation*</label>
+                                            <select id="duree" class="form-control" name="duree">
+                                                <option selected="">choisir une option</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description de la formation</label>
+                                        <textarea class="form-control" id="description" rows="2" name="description"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn  btn-primary fa-pull-right">Créer la formation</button>
+                                </form>
+                            </div>
+
+                        </div>
+                        <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function () {
+                                'use strict';
+                                window.addEventListener('load', function () {
+                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    // Loop over them and prevent submission
+                                    var validation = Array.prototype.filter.call(forms, function (form) {
+                                        form.addEventListener('submit', function (event) {
+                                            if (form.checkValidity() === false) {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                            }
+                                            form.classList.add('was-validated');
+                                        }, false);
+                                    });
+                                }, false);
+                            })();
+                        </script>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- [ form-element ] end -->
+
+        </div>
+    </div>
+</section>

@@ -15,5 +15,13 @@ namespace gestion_des_formations_final.Models
         public string Adresse { get; set; }
         public string Statut { get; set; }
         public string ACertif { get; set; }
+        public int? EntrepriseId { get; set; }
+
+        public virtual Entreprise Entreprise { get; set; }
+
+        public virtual ICollection<Assister> AAssister
+        { get; set; }
+
+
     }
 }
