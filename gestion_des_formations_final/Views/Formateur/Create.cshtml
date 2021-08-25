@@ -1,0 +1,72 @@
+﻿@model gestion_des_formations_final.Models.Formateur
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section class="">
+    <div class="">
+
+        <div class="row">
+            <!-- [ form-element ] start -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="Nom" class="control-label">Nom*</label>
+                                        <input asp-for="Nom" class="form-control" placeholder="Entrer le nom du formateur" />
+                                        <span asp-validation-for="Nom" class="text-danger" ></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Prenom" class="control-label">Prenom*</label>
+                                        <input asp-for="Prenom" class="form-control" placeholder="Entrer le Prenom du formateur" />
+                                        <span asp-validation-for="Prenom" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Email" class="control-label">Email*</label>
+                                        <input asp-for="Email" class="form-control" placeholder="Entrer le mail du formateur" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Adresse" class="control-label">Adresse*</label>
+                                        <input asp-for="Adresse" class="form-control" placeholder="Entrer l'adresse du formateur" />
+                                        <span asp-validation-for="Adresse" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="DateAnniv" class="control-label">Date et heure de naissance*</label>
+                                        <input asp-for="DateAnniv" class="form-control" placeholder="Entrer la date de naissance" />
+                                        <span asp-validation-for="DateAnniv" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Telephone" class="control-label">Téléphone*</label>
+                                        <input asp-for="Telephone" class="form-control" placeholder="Entrer le numéro du formateur" type="tel"/>
+                                        <span asp-validation-for="Telephone" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Type" class="control-label"></label>
+                                        <label asp-for="Type" class="control-label">*</label><br />
+                                        <label asp-for="Type" class="control-label"> Interne<input asp-for="Type" class="form-control" type="radio" value="Interne" checked="" /></label>
+                                        <label asp-for="Type" class="control-label" style="margin-left:50px;"> Externe<input asp-for="Type" class="form-control" type="radio" value="Externe" /></label>
+                                        <span asp-validation-for="Type" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn  btn-danger" style="margin-right:10px"><a class="text-white" asp-controller="Formateur" asp-action="Index"> Retour</a></button>
+                                        <input type="submit" value="Ajouter" class="btn  btn-primary fa-pull-right" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

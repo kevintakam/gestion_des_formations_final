@@ -1,0 +1,65 @@
+﻿@model gestion_des_formations_final.Models.Formation
+
+@{
+    ViewData["Title"] = "Details";
+}
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <h1>Details</h1>
+
+        <div>
+            <h4>Formation</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Intitule)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Intitule)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Prix)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Prix)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Duree)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Duree)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.FormationCertifiee)
+                </dt>
+                @if (Model.FormationCertifiee == true)
+                {
+                    <dd class="col-sm-10">
+                        Oui
+                    </dd>
+                }
+                else
+                {
+                    <dd class="col-sm-10">
+                        Non
+                    </dd>
+                }
+
+            </dl>
+        </div>
+        <div>
+            <button type="button" class="btn  btn-primary fa-pull-left"><a asp-action="ModifierFormation" asp-route-id="@Model.FormationId" class="text-white">Mise à jour</a></button>
+            <button type="button" class="btn  btn-danger fa-pull-left"><a asp-action="Index" class="text-white">Retour</a></button>
+            
+        </div>
+
+    </div>
+    </section>
+
+        

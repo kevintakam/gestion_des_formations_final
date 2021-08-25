@@ -1,7 +1,12 @@
 ﻿<!--Index de formation-->
 <!-- [ Main Content ] start -->
+<<<<<<< HEAD
+
+=======
+@model IEnumerable<gestion_des_formations_final.Models.Formation>
 <section class="pcoded-main-container">
     <div class="pcoded-content">
+>>>>>>> 5159fc6d95ec36d0d2eeae33ba4af81300b3e535
         <div class="row">
             <!-- Multi-column table start -->
             <div class="col-sm-12">
@@ -11,24 +16,46 @@
                     </div>
                     <div class="card-body">
                         <div class="dt-responsive table-responsive">
-                            <table id="multi-colum-dt" class="table table-striped table-bordered nowrap">
+                            <table id="multi-colum-dt" class="table table-striped table-bordered nowrap ">
                                 <thead>
                                     <tr>
-                                        <th>Intitule de la formation</th>
-                                        <th>Prix de la formation</th>
-                                        <th>Duree de la formation</th>
-                                        <th>Formation certifiante</th>
+                                        <th>@Html.DisplayNameFor(model => model.Intitule)</th>
+                                        <th> @Html.DisplayNameFor(model => model.Prix)</th>
+                                        <th> @Html.DisplayNameFor(model => model.Duree)</th>
+                                        <th>@Html.DisplayNameFor(model => model.FormationCertifiee)</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td><a href="#" class="text-success"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;<a href="#" class="text-danger"><i class="fa fa-trash"></i></a>&nbsp;&nbsp;&nbsp;<a href="#" class="text-primary"><i class="fa fa-eye"></i></a></td>
-                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td id="intitule">
+                                                @Html.DisplayFor(modelItem => item.Intitule)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Prix)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Duree)
+                                            </td>
+                                            @if (item.FormationCertifiee == true)
+                                            {
+                                                <td>
+                                                    Oui
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    Non
+                                                </td>
+
+                                            }
+
+                                            <td><a asp-controller="Formation" asp-action="ModifierFormation" asp-route-id="@item.FormationId" class="text-success"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a asp-controller="Formation" asp-action="Delete" asp-route-id="@item.FormationId" class="text-danger "><i class="fa fa-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a asp-controller="Formation" asp-action="Details" asp-route-id="@item.FormationId" class="text-primary"><i class="fa fa-eye"></i></a></td>
+                                        </tr>
+                                    }
                                 </tbody>
                                 <tfoot></tfoot>
                             </table>
@@ -37,6 +64,18 @@
                 </div>
             </div>
             <!-- Multi-column table end -->
+<<<<<<< HEAD
+        </div>
+=======
         </div>
     </div>
 </section>
+@section Scripts {
+    
+    <script>
+
+        
+
+    </script>
+}
+>>>>>>> 5159fc6d95ec36d0d2eeae33ba4af81300b3e535

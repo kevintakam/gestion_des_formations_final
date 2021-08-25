@@ -1,52 +1,84 @@
-﻿
+﻿@model IEnumerable<gestion_des_formations_final.Models.Formateur>
 
-<!--Index de formation-->
-<!-- [ Main Content ] start -->
-<section class="pcoded-main-container">
-    <div class="pcoded-content">
-        <div class="row">
-            <!-- Multi-column table start -->
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Formateur" asp-action="AjouterFormateur"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter un formateur</a></button>
-                    </div>
-                    <div class="card-body">
+@{
+    ViewData["Title"] = "Index";
+}
 
-                        <div class="dt-responsive table-responsive">
+<div class="row">
+    <!-- Multi-column table start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Formateur" asp-action="Create"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter un formateur</a></button>
+            </div>
+            <div class="card-body">
+                <div class="dt-responsive table-responsive">
+                    <table  id="multi-colum-dt" class="table table-striped table-bordered nowrap">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nom)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Prenom)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Adresse)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DateAnniv)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telephone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Type)
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nom)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Prenom)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Adresse)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateAnniv)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Telephone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                <a  class="text-success" asp-action="Edit" asp-route-id="@item.FormateurId"><i class="fa fa-edit"></i></a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a  class="text-danger" asp-action="Delete" asp-route-id="@item.FormateurId"><i class="fa fa-trash"></i></a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a  class="text-primary" asp-action="Details" asp-route-id="@item.FormateurId"><i class="fa fa-eye"></i></a>
+                                </td>
 
-                            <table id="multi-colum-dt" class="table table-striped table-bordered nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>Nom  </th>
-                                        <th>Prenom  </th>
-                                        <th>Email</th>
-                                        <th>Adresse</th>
-                                        <th>Telephone</th>
-                                        <th>Type Formateur</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Armelle</td>
-                                        <td>eliane</td>
-                                        <td>elianemengouo@gmail.com</td>
-                                        <td>rue 2564 ndogbong</td>
-                                        <td>682926903</td>
-                                        <td>Externe</td>
-                                        <td><a href="#" class="text-success"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;<a href="#" class="text-danger"><i class="fa fa-trash"></i></a>&nbsp;&nbsp;&nbsp;<a href="#" class="text-primary"><i class="fa fa-eye"></i></a></td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <!-- Multi-column table end -->
         </div>
     </div>
-</section>
-
+</div>

@@ -10,8 +10,8 @@ using gestion_des_formations_final.Data;
 namespace gestion_des_formations_final.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210824154926_firstmigration")]
-    partial class firstmigration
+    [Migration("20210824173944_second_migration")]
+    partial class second_migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -346,6 +346,9 @@ namespace gestion_des_formations_final.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Duree")
                         .HasColumnType("int");
