@@ -50,47 +50,49 @@
 
                                     }
 
-                                    <td><a asp-controller="Formation" asp-action="ModifierFormation" asp-route-id="@item.FormationId" class="text-success"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a asp-controller="Formation" asp-action="Delete" asp-route-id="@item.FormationId" class="text-danger" onclick="Delete(@item.FormationId)"><i class="fa fa-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a asp-controller="Formation" asp-action="Details" asp-route-id="@item.FormationId" class="text-primary"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                            }
-                        </tbody>
-                        <tfoot></tfoot>
-                    </table>
+                                        <td><a asp-controller="Formation" asp-action="ModifierFormation" asp-route-id="@item.FormationId" class="text-success"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a asp-controller="Formation" asp-action="Delete" asp-route-id="@item.FormationId" class="text-danger "><i class="fa fa-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a asp-controller="Formation" asp-action="Details" asp-route-id="@item.FormationId" class="text-primary"><i class="fa fa-eye"></i></a></td>
+                                    </tr>
+                                    }
+                                </tbody>
+                                <tfoot></tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- Multi-column table end -->
         </div>
     </div>
-    <!-- Multi-column table end -->
-</div>
+</section>
 @section Scripts {
 
     <script>
         function Delete(id) {
-            $.ajax({
-                url: "Formation/Delete/",
-                data:
-                {
-                    id: id
-                },
-                type: "GET",
-                success: function (data) {
-                    console.log(data);
-                    sweetAlert
-                        ({
-                            title: "Deleted!",
-                            text: "Your file was successfully deleted!",
-                            type: "success"
-                        }).then(function (isConfirm) {
-                            if (isConfirm) {
-                                location.reload();
-                            }
-                        });
-                },
-                error: function (data) {
-                    swal("Oops!!!!", "une erreur s'est produite", "error");
+                    $.ajax({
+                        url: "Formation/Delete/",
+                        data:
+                        {
+                            id: id
+                        },
+                        type: "GET",
+                        success: function (data) {
+                            console.log(data);
+                            sweetAlert
+                                ({
+                                    title: "Deleted!",
+                                    text: "Your file was successfully deleted!",
+                                    type: "success"
+                                }).then(function (isConfirm) {
+                                    if (isConfirm) {
+                                        location.reload();
+                                    }
+                                });          
+                        },
+                        error: function (data) {
+                            swal("Oops!!!!", "une erreur s'est produite", "error");
+                        }
+                    });
                 }
-            });
-        }
 
     </script>
 }
