@@ -1,7 +1,6 @@
 ﻿@model gestion_des_formations_final.Models.Formation
 <!-- [ Main Content ] start -->
-<section class="pcoded-main-container">
-    <div class="pcoded-content">
+
         <div class="row">
             <!-- [ form-element ] start -->
             <div class="col-sm-12">
@@ -43,24 +42,28 @@
                                         <div class="row">
                                             @if (Model.FormationCertifiee == true)
                                             {
-                                                <div class="radio radio-primary d-inline" style="margin-left:40px;">
-                                                    <input type="radio" name="radio-p-fill-5" id="radio-p-fill-5" checked="">
-                                                    <label for="radio-p-fill-5" class="cr">Oui</label>
-                                                </div>
-                                                <div class="radio radio-primary d-inline" style="margin-left:80px;">
-                                                    <input type="radio" name="radio-p-fill-5" id="radio-p-fill-6">
-                                                    <label for="radio-p-fill-6" class="cr">Non</label>
+                                                <div class="row">
+                                                    <div class="" style="margin-left:40px;">
+                                                        <input type="radio" asp-for="FormationCertifiee" value="Oui" checked="">
+                                                        <label asp-for="FormationCertifiee" >Oui</label>
+                                                    </div>
+                                                    <div class="" style="margin-left:80px;">
+                                                        <input type="radio" asp-for="FormationCertifiee" value="Non">
+                                                        <label asp-for="FormationCertifiee">Non</label>
+                                                    </div>
                                                 </div>
                                             }
                                             else
                                             {
-                                                <div class="radio radio-primary d-inline" style="margin-left:40px;">
-                                                    <input type="radio" name="radio-p-fill-5" id="radio-p-fill-5">
-                                                    <label for="radio-p-fill-5" class="cr">Oui</label>
-                                                </div>
-                                                <div class="radio radio-primary d-inline" style="margin-left:80px;">
-                                                    <input type="radio" name="radio-p-fill-5" id="radio-p-fill-6" checked="">
-                                                    <label for="radio-p-fill-6" class="cr">Non</label>
+                                                <div class="row">
+                                                    <div class="" style="margin-left:40px;">
+                                                        <input type="radio" asp-for="FormationCertifiee" value="Oui" >
+                                                        <label asp-for="FormationCertifiee">Oui</label>
+                                                    </div>
+                                                    <div class="" style="margin-left:80px;">
+                                                        <input type="radio" asp-for="FormationCertifiee" value="non" checked="">
+                                                        <label asp-for="FormationCertifiee">Non</label>
+                                                    </div>
                                                 </div>
                                             }
 
@@ -83,7 +86,5 @@
             </div>
             <!-- [ form-element ] end -->
         </div>
-    </div>
-</section>
 
 
