@@ -21,6 +21,7 @@ namespace gestion_des_formations_final.Controllers
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Nos Formations";
+
             List<Formation> Formations = _context.Formation.ToList();
             return View(Formations);
         }
@@ -71,25 +72,18 @@ namespace gestion_des_formations_final.Controllers
             _context.SaveChanges();
             return RedirectToAction("index");
         }
-        [HttpGet]
-        public IActionResult Delete(int Id)
+       
+        public async Task<IActionResult> DeleteAsync(int? id)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Formations >  modifier Formation";
-            Formation formation = _context.Formation.Where(p => p.FormationId == Id).FirstOrDefault();
-
-            return View(formation);
-        }
-        [HttpPost]
-        public IActionResult Delete(Formation formation)
-        {
-            ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Formations >  modifier Formation";
-            _context.Attach(formation);
-            _context.Entry(formation).State = EntityState.Deleted;
-            _context.SaveChanges();
+            var formation = await _context.Formation.FindAsync(id);
+            _context.Formation.Remove(formation);
+            await _context.SaveChangesAsync();
             return RedirectToAction("index");
+           
         }
+   
 
 
     }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using gestion_des_formations_final.Models;
 using gestion_des_formations_final.Data;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 namespace gestion_des_formations_final.Controllers
 {
@@ -43,27 +44,20 @@ namespace gestion_des_formations_final.Controllers
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Formateurs >  Modifier un Formateur";
             _context.Attach(formateur);
-            _context.Entry(formateur).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Entry(formateur).State = EntityState.Modified;
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult Delete(int Id)
+        public async Task<IActionResult> DeleteAsync(int? id)
         {
             ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Formateurs >  Supprimer un Formateur";
-            Formateur Formateur = _context.Formateur.Where(p => p.FormateurId == Id).FirstOrDefault();
-            return View(Formateur);
-        }
-        [HttpPost]
-        public IActionResult Delete(Formateur formateur)
-        {
-            ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Formateurs >  Modifier un Formateur";
-            _context.Attach(formateur);
-            _context.Entry(formateur).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            ViewData["second_title"] = "Formations >  modifier Formation";
+            var formateur = await _context.Formateur.FindAsync(id);
+            _context.Formateur.Remove(formateur);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("index");
+
         }
         [HttpGet]
         public ActionResult Create()
@@ -78,13 +72,10 @@ namespace gestion_des_formations_final.Controllers
        // [ValidateAntiForgeryToken]
         public ActionResult Create(Formateur formateur)
         {
-            var formateurId = _context.Formateur.Max(formateurid => formateurid.FormateurId);
-            long formateurNo;
-
-            formateur.FormateurId = formateurId;
-            // Int64.TryParse(formateurId.Substring(2, formateurId.Length - 2), out formateurNo);
+            ViewData["Title"] = "Gestion des formations";
+            ViewData["second_title"] = "Formateurs >  Nouveau Formateur ";
             _context.Attach(formateur);
-            _context.Entry(formateur).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Entry(formateur).State = EntityState.Added;
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

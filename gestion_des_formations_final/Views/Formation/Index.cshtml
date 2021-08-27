@@ -1,71 +1,80 @@
-﻿@model IEnumerable<gestion_des_formations_final.Models.Formation>
+﻿<!--Index de formation-->
+<!-- [ Main Content ] start -->
+@model IEnumerable<gestion_des_formations_final.Models.Formation>
 
-@{
-    ViewData["Title"] = "Index";
-}
 
-<div class="row">
-    <!-- Multi-column table start -->
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header">
-                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Formation" asp-action="AjouterFormation"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une formation</a></button>
-            </div>
-            <div class="card-body">
-                <div class="dt-responsive table-responsive">
-                    <table id="multi-colum-dt" class="table table-striped table-bordered nowrap ">
-                        <thead>
-                            <tr>
-                                <th>@Html.DisplayNameFor(model => model.Intitule)</th>
-                                <th> @Html.DisplayNameFor(model => model.Prix)</th>
-                                <th> @Html.DisplayNameFor(model => model.Duree)</th>
-                                <th>@Html.DisplayNameFor(model => model.FormationCertifiee)</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td id="intitule">
-                                        @Html.DisplayFor(modelItem => item.Intitule)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Prix)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Duree)
-                                    </td>
-                                    @if (item.FormationCertifiee == true)
-                                    {
-                                        <td>
-                                            Oui
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            Non
-                                        </td>
+        <div class="row">
+            <!-- Multi-column table start -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Formation" asp-action="AjouterFormation"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une formation</a></button>
+                    </div>
 
-                                    }
-
-                                        <td><a asp-controller="Formation" asp-action="ModifierFormation" asp-route-id="@item.FormationId" class="text-success"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a asp-controller="Formation" asp-action="Delete" asp-route-id="@item.FormationId" class="text-danger "><i class="fa fa-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a asp-controller="Formation" asp-action="Details" asp-route-id="@item.FormationId" class="text-primary"><i class="fa fa-eye"></i></a></td>
+                    <div class="card-body">
+                        <div class="dt-responsive table-responsive">
+                            <table id="multi-colum-dt" class="table table-striped table-bordered nowrap ">
+                                <thead>
+                                    <tr>
+                                        <th>@Html.DisplayNameFor(model => model.Intitule)</th>
+                                        <th> @Html.DisplayNameFor(model => model.Prix)</th>
+                                        <th> @Html.DisplayNameFor(model => model.Duree)</th>
+                                        <th>@Html.DisplayNameFor(model => model.FormationCertifiee)</th>
+                                        <th>Action</th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td id="intitule">
+                                            @Html.DisplayFor(modelItem => item.Intitule)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Prix)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Duree) &nbsp;Jour(s)
+                                        </td>
+                                        @if (item.FormationCertifiee == true)
+                                        {
+                                            <td class="text-center text-danger" style="font-weight:bold">
+                                                Oui
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center" style="font-weight:bold">
+                                                Non
+                                            </td>
+
+                                        }
+
+                                        <td>
+                                            <a asp-controller="Formation" asp-action="ModifierFormation" asp-route-id="@item.FormationId" class="text-success"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+                                            <a class="text-danger" onclick="Delete(@item.FormationId)"><i class="feather icon-trash-2 ml-3 f-16 text-c-red"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a asp-controller="Formation" asp-action="Details" asp-route-id="@item.FormationId" class="text-primary"><i class="fa fa-eye"></i></a>
+                                        </td>
+                                        
+
+                                    </tr>
+
                                     }
                                 </tbody>
                                 <tfoot></tfoot>
                             </table>
+
                         </div>
                     </div>
                 </div>
+                
             </div>
             <!-- Multi-column table end -->
         </div>
-    </div>
-</section>
-@section Scripts {
+        
 
+@section Scripts {
+    
     <script>
         function Delete(id) {
                     $.ajax({
@@ -79,12 +88,24 @@
                             console.log(data);
                             sweetAlert
                                 ({
-                                    title: "Deleted!",
-                                    text: "Your file was successfully deleted!",
-                                    type: "success"
+                                    title: "êtes vous sûre",
+                                    text: "de vouloir supprimer cette formation",
+                                    type: "Warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: "Yes, delete it!",
+                                    cancelButtonText: 'No, cancel!',
                                 }).then(function (isConfirm) {
                                     if (isConfirm) {
-                                        location.reload();
+                                        sweetAlert(
+                                            'Deleted',
+                                            'votre formation a bien été supprimée',
+                                            'success'
+                                        ),
+                                            location.reload();
+                                    } else {
+                                        swal("Oops!!!!", "une erreur s'est produite", "error");
                                     }
                                 });          
                         },
@@ -96,3 +117,4 @@
 
     </script>
 }
+

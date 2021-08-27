@@ -12,7 +12,6 @@ namespace gestion_des_formations_final.Models
         public int FormateurId { get; set; }
         [Required(ErrorMessage ="Renseignez le nom du formateur")]
         public string Nom { get; set; }
-        [Required(ErrorMessage = "Renseignez le prenom du formateur")]
         public string Prenom { get; set; }
         [Required(ErrorMessage = "Renseignez le mail du formateur")]
         public string Email { get; set; }

@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<gestion_des_formations_final.Models.Formateur>
 
 
-
 <div class="row">
     <!-- Multi-column table start -->
     <div class="col-sm-12">
@@ -64,9 +63,9 @@
                                         @Html.DisplayFor(modelItem => item.Type)
                                     </td>
                                     <td>
-                                        <a class="text-success" asp-action="Edit" asp-route-id="@item.FormateurId"><i class="fa fa-edit"></i></a>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <a class="text-danger" asp-action="Delete" asp-route-id="@item.FormateurId"><i class="fa fa-trash"></i></a>
+                                        <a class="text-success" asp-action="Edit" asp-route-id="@item.FormateurId"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+
+                                        <a class="text-danger" onclick="Delete(@item.FormateurId)"><i class="feather icon-trash-2 ml-3 f-16 text-c-red"></i></a>
                                         &nbsp;&nbsp;&nbsp;
                                         <a class="text-primary" asp-action="Details" asp-route-id="@item.FormateurId"><i class="fa fa-eye"></i></a>
                                     </td>
@@ -79,37 +78,50 @@
             </div>
         </div>
     </div>
+
 </div>
 
 @section Scripts {
 
     <script>
         function Delete(id) {
-                    $.ajax({
-                        url: "Formateur/Delete/",
-                        data:
-                        {
-                            id: id
-                        },
-                        type: "GET",
-                        success: function (data) {
-                            console.log(data);
-                            sweetAlert
-                                ({
-                                    title: "Deleted!",
-                                    text: "Your file was successfully deleted!",
-                                    type: "success"
-                                }).then(function (isConfirm) {
-                                    if (isConfirm) {
-                                        location.reload();
-                                    }
-                                });
-                        },
-                        error: function (data) {
-                            swal("Oops!!!!", "une erreur s'est produite", "error");
-                        }
-                    });
+            $.ajax({
+                url: "Formateur/Delete/",
+                data:
+                {
+                    id: id
+                },
+                type: "GET",
+                success: function (data) {
+                    console.log(data);
+                    sweetAlert
+                        ({
+                            title: "êtes vous sûre",
+                            text: "de vouloir supprimer cette formation",
+                            type: "Warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: "Yes, delete it!",
+                            cancelButtonText: 'No, cancel!',
+                        }).then(function (isConfirm) {
+                            if (isConfirm) {
+                                sweetAlert(
+                                    'Deleted',
+                                    'votre formation a bien été supprimée',
+                                    'success'
+                                ),
+                                    location.reload();
+                            } else {
+                                swal("Oops!!!!", "une erreur s'est produite", "error");
+                            }
+                        });
+                },
+                error: function (data) {
+                    swal("Oops!!!!", "une erreur s'est produite", "error");
                 }
+            });
+        }
 
     </script>
 }

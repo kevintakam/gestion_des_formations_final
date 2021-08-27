@@ -4,58 +4,54 @@
     ViewData["Title"] = "Details";
 }
 
-        <h1>Details</h1>
-
-        <div>
-            <h4>Formation</h4>
-            <hr />
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Intitule)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Intitule)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Prix)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Prix)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Duree)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Duree)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Description)
-                </dt>
-                <dd class="col-sm-10">
+<div id="Details" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalPopoversLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalPopoversLabel">@Html.DisplayFor(model => model.Intitule)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <h5>Objectif</h5>
+                <p>
                     @Html.DisplayFor(model => model.Description)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.FormationCertifiee)
-                </dt>
-                @if (Model.FormationCertifiee == true)
-                {
-                    <dd class="col-sm-10">
+                </p>
+                <hr />
+                <span style="margin-right: 80px; font-weight: bold; font-size: 16px;"> @Html.DisplayNameFor(model => model.Prix): <i class="text-danger">@Html.DisplayFor(model => model.Prix)</i></span>
+                <span style="font-weight: bold; font-size: 16px;"> @Html.DisplayNameFor(model => model.Duree): <i class="text-danger">@Html.DisplayFor(model => model.Duree)</i></span><br />
+                <span style="font-weight: bold;font-size:16px;">
+                    @Html.DisplayNameFor(model => model.FormationCertifiee):
+                    @if (Model.FormationCertifiee == true)
+                    {
+                    <i class="text-danger">
                         Oui
-                    </dd>
-                }
-                else
-                {
-                    <dd class="col-sm-10">
-                        Non
-                    </dd>
-                }
-
-            </dl>
+                    </i>
+                            }
+                            else
+                            {
+                            <i class="text-danger">
+                                Non
+                                </i>
+                            }
+                </i>
+                </span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-secondary" ><a class="text-white" asp-action="Index">Retour</a></button>
+                <button type="button" class="btn  btn-primary" ><a  class="text-white" asp-controller="Formation" asp-action="ModifierFormation" asp-route-id="@Model.FormationId">mettre à jour</a></button>
+            </div>
         </div>
-        <div>
-            <button type="button" class="btn  btn-primary fa-pull-left"><a asp-action="ModifierFormation" asp-route-id="@Model.FormationId" class="text-white">Mise à jour</a></button>
-            <button type="button" class="btn  btn-danger fa-pull-left"><a asp-action="Index" class="text-white">Retour</a></button>
-            
-        </div>
+    </div>
+</div>
 
-        
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {        
+                $('#Details').modal('show');
+        });
+    </script>
+}
+
+
