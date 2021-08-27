@@ -27,7 +27,7 @@
                                                 <div class="col-sm-6 text-right"><span>Fcfa</span></div>
                                             </div>
                                             <input type="text" asp-for="Prix" class="mb-3 form-control form-control-sm" id="prix" placeholder="Entrer le prix">
-                                            <span asp-validation-for="Prix" id="prixhelp" class="form-text text-muted text-danger"></span>
+                                            <span asp-validation-for="Prix" id="prix-help" class="form-text text-muted text-danger"></span>
                                         </div>
                                         <div class="form-group" style="margin-left:180px;">
                                             <div class="row">
@@ -35,7 +35,7 @@
                                                 <div class="col-sm-6 text-right"><span>jour(s)</span></div>
                                             </div>
                                             <input type="text" asp-for="Duree" class="mb-3 form-control form-control-sm" id="duree" placeholder="Entrer la durée">
-                                            <span asp-validation-for="Duree" id="dureehelp" class="form-text text-muted text-danger"></span>
+                                            <span asp-validation-for="Duree" id="duree-help" class="form-text text-muted text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -43,24 +43,20 @@
                                         <div class="row">
                                             @if (Model.FormationCertifiee == true)
                                             {
-                                                <div class="radio radio-primary d-inline" style="margin-left:40px;">
-                                                    <input type="radio" name="radio-p-fill-5" id="radio-p-fill-5" checked="">
-                                                    <label for="radio-p-fill-5" class="cr">Oui</label>
-                                                </div>
-                                                <div class="radio radio-primary d-inline" style="margin-left:80px;">
-                                                    <input type="radio" name="radio-p-fill-5" id="radio-p-fill-6">
-                                                    <label for="radio-p-fill-6" class="cr">Non</label>
+                                                <div class="row">
+                                                    <input type="radio" checked="" asp-for="FormationCertifiee" value="true" style="margin-left: 20px; width: 22px; height: 22px;">
+                                                    <label asp-for="FormationCertifiee" class="cr">Oui</label>
+                                                    <input type="radio" asp-for="FormationCertifiee" value="false" style="margin-left: 130px; width: 22px; height: 22px; ">
+                                                    <label asp-for="FormationCertifiee " class="cr">Non</label>
                                                 </div>
                                             }
                                             else
                                             {
-                                                <div class="radio radio-primary d-inline" style="margin-left:40px;">
-                                                    <input type="radio" name="radio-p-fill-5" id="radio-p-fill-5">
-                                                    <label for="radio-p-fill-5" class="cr">Oui</label>
-                                                </div>
-                                                <div class="radio radio-primary d-inline" style="margin-left:80px;">
-                                                    <input type="radio" name="radio-p-fill-5" id="radio-p-fill-6" checked="">
-                                                    <label for="radio-p-fill-6" class="cr">Non</label>
+                                                <div class="row">
+                                                    <input type="radio" asp-for="FormationCertifiee" value="true" style="margin-left: 20px; width: 22px; height: 22px;">
+                                                    <label asp-for="FormationCertifiee" class="cr">Oui</label>
+                                                    <input type="radio" asp-for="FormationCertifiee" value="false" style="margin-left: 130px; width: 22px; height: 22px;" checked="">
+                                                    <label asp-for="FormationCertifiee " class="cr" >Non</label>
                                                 </div>
                                             }
 
@@ -85,5 +81,32 @@
         </div>
     </div>
 </section>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $('#prix').hover(function () {
+                var b = $('#prix').val();
+                if ($.isNumeric(b)) {
+                    $('#prix-help').text(' ');
+                } else {
+                    $('#prix').text(" ");
+                    $('#prix').focus();
+                    $('#prix-help').text('entrer uniquement les chiffres');
+                }
+            }),
+                $('#duree').hover(function () {
+                    var b = $('#duree').val();
+                    if ($.isNumeric(b)) {
+                        $('#duree-help').text(' ');
+                    } else {
+                        $('#duree').focus();
+                        $('#duree-help').text('entrer uniquement les chiffres');
+                    }
+                });
+
+        });
+    </script>
+}
 
 
