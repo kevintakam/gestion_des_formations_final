@@ -6,12 +6,67 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Views\Certifications\Create.cshtml" />
+    <None Include="Views\Certifications\Delete.cshtml" />
+    <None Include="Views\Certifications\Details.cshtml" />
+    <None Include="Views\Certifications\Edit.cshtml" />
+    <None Include="Views\Certifications\Index.cshtml" />
+    <None Include="Views\Documents\Create.cshtml" />
+    <None Include="Views\Documents\Delete.cshtml" />
+    <None Include="Views\Documents\Details.cshtml" />
+    <None Include="Views\Documents\Edit.cshtml" />
+    <None Include="Views\Documents\ImporterDocument.cshtml" />
+    <None Include="Views\Documents\Index.cshtml" />
+    <None Include="Views\Entreprises\Create.cshtml" />
+    <None Include="Views\Entreprises\Details.cshtml" />
+    <None Include="Views\Entreprises\Edit.cshtml" />
+    <None Include="Views\Entreprises\Index.cshtml" />
+    <None Include="Views\FormateurTemporaire\Create.cshtml" />
+    <None Include="Views\FormateurTemporaire\Delete.cshtml" />
+    <None Include="Views\FormateurTemporaire\Details.cshtml" />
+    <None Include="Views\FormateurTemporaire\Edit.cshtml" />
+    <None Include="Views\FormateurTemporaire\Index.cshtml" />
+    <None Include="Views\Formation\AjouterFormation.cshtml" />
+    <None Include="Views\Formation\Create.cshtml" />
+    <None Include="Views\Formation\Delete.cshtml" />
+    <None Include="Views\Formation\Details.cshtml" />
+    <None Include="Views\Formation\Edit.cshtml" />
+    <None Include="Views\Formation\Index.cshtml" />
+    <None Include="Views\Formation\Index2.cshtml" />
+    <None Include="Views\Formation\Mesformations.cshtml" />
+    <None Include="Views\Formation\ModifierFormation.cshtml" />
+    <None Include="Views\Formation\_Modaldetails.cshtml" />
+    <None Include="Views\Organismes\Create.cshtml" />
+    <None Include="Views\Organismes\Delete.cshtml" />
+    <None Include="Views\Organismes\Details.cshtml" />
+    <None Include="Views\Organismes\Edit.cshtml" />
+    <None Include="Views\Organismes\Index.cshtml" />
+    <None Include="Views\Salles\Create.cshtml" />
+    <None Include="Views\Salles\Details.cshtml" />
+    <None Include="Views\Salles\Edit.cshtml" />
+    <None Include="Views\Salles\Index.cshtml" />
+    <None Include="Views\TypeDocuments\Create.cshtml" />
+    <None Include="Views\TypeDocuments\Delete.cshtml" />
+    <None Include="Views\TypeDocuments\Details.cshtml" />
+    <None Include="Views\TypeDocuments\Edit.cshtml" />
+    <None Include="Views\TypeDocuments\Home.cshtml" />
+    <None Include="Views\TypeDocuments\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.16" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.16" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.16" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.16" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\DOCUMENTS\" />
   </ItemGroup>
 
 </Project>

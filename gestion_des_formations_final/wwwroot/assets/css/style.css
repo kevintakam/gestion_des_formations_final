@@ -22777,7 +22777,7 @@ pre[class*=language-]:before {
 .menu-styler hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-
+/*
 .menu-styler .style-toggler > a {
     position: fixed;
     right: 0;
@@ -22835,6 +22835,7 @@ pre[class*=language-]:before {
     -webkit-animation: anim-rotate 0s linear infinite;
     animation: anim-rotate 0s linear infinite;
 }
+*/
 
 .menu-styler.open .prebuild-toggler > .prebuild-group, .menu-styler.prebuild-open .prebuild-toggler > .prebuild-group {
     right: calc(400px - 100px);

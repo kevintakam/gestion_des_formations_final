@@ -1,69 +1,68 @@
 ﻿@model gestion_des_formations_final.Models.Formation
 <!-- [ Main Content ] start -->
 
-        <div class="row">
-            <!-- [ form-element ] start -->
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Ajouter une formation</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <form class="center" asp-action="AjouterFormation" method="post">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                    <div class="form-group">
-                                        <label asp-for="Intitule">Intitule Formation*</label>
-                                        <input type="text" asp-for="Intitule" class="mb-3 form-control form-control-sm" placeholder="Entrer le nom de la formation">
-                                        <span asp-validation-for="Intitule" class="form-text  text-danger"></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group" style="margin-left:15px;">
-                                            <div class="row">
-                                                <div class="col-sm-6"><label asp-for="Prix">Prix*</label></div>
-                                                <div class="col-sm-6 text-right"><span>Fcfa</span></div>
-                                            </div>
-                                            <input type="text" asp-for="Prix" class="mb-3 form-control form-control-sm only_integer" id="prix" placeholder="Entrer le prix" >
-                                            <span asp-validation-for="Prix"  class="form-text  text-danger" id="prix-help"></span>
-                                        </div>
-                                        <div class="form-group" style="margin-left:180px;">
-                                            <div class="row">
-                                                <div class="col-sm-6"><label asp-for="Duree">Duree*</label></div>
-                                                <div class="col-sm-6 text-right"><span>jour(s)</span></div>
-                                            </div>
-                                            <input type="text" asp-for="Duree" class="mb-3 form-control form-control-sm" id="duree" placeholder="Entrer la durée" >
-                                            <span asp-validation-for="Duree"  class="form-text text-danger" id="duree-help"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="FormationCertifiee">Formation Certifiée</label>
-                                            <div class="radio radio-primary d-inline" style="margin-left:40px;">
-                                        <div class="row">   
-                                                <input type="radio" checked="" asp-for="FormationCertifiee"  value="true" style="margin-left: 20px; width: 22px; height: 22px; background-color:blue;">
-                                                <label asp-for="FormationCertifiee" class="cr">Oui</label>
-                                                <input type="radio" asp-for="FormationCertifiee"  value="false" style="margin-left: 130px; width: 22px; height: 22px; background-color: blue ">
-                                                <label asp-for="FormationCertifiee " class="cr">Non</label>
-                                            </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="Description">Description de la formation</label>
-                                        <textarea asp-for="Description" class="form-control" id="description" rows="2"></textarea>
-                                    </div>
-                                    <button type="reset" class="btn  btn-danger fa-pull-right" style="margin-left:15px;"><a class="text-white" asp-controller="Formation" asp-action="Index">Annuler</a></button>
-                                    <button type="submit" class="btn  btn-primary fa-pull-right">Ajouter</button>
-                                </form>
+<div class="row">
+    <!-- [ form-element ] start -->
+    <div class="col-sm-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="center" asp-action="AjouterFormation">
+                            <div class="col-md-12  fa-pull-right">
+                                <span class="text-danger fa-pull-right">@ViewBag.message</span>
                             </div>
-                        </div>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Intitule">Intitule Formation<span class="text-c-blue">*</span></label>
+                                <input type="text" asp-for="Intitule" class="mb-3 form-control form-control-sm" placeholder="Entrer le nom de la formation">
+                                <span asp-validation-for="Intitule" class="form-text  text-danger"></span>
+                            </div>
 
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-2"><label asp-for="Prix">Prix<span class="text-c-blue">*</span></label></div>
+                                    <div><span>Fcfa</span></div>
+                                </div>
+                                <input type="text" asp-for="Prix" class="mb-3 form-control form-control-sm only_integer" id="prix" placeholder="Entrer le prix">
+                                <span asp-validation-for="Prix" class="form-text  text-danger" id="prix-help"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-2"><label asp-for="Duree">Duree<span class="text-c-blue">*</span></label></div>
+                                    <div><span>jour(s)</span></div>
+                                </div>
+                                <input type="text" asp-for="Duree" class="mb-3 form-control form-control-sm" id="duree" placeholder="Entrer la durée">
+                                <span asp-validation-for="Duree" class="form-text text-danger" id="duree-help"></span>
+                            </div>
 
+                            <div class="form-group">
+                                <label asp-for="FormationCertifiee">Formation Certifiée<span class="text-c-blue">*</span></label>
+                                <div class="row">
+                                    <input type="radio" checked="" asp-for="FormationCertifiee" value="true" style="margin-left: 20px; width: 22px; height: 22px; background-color:blue;">
+                                    <label asp-for="FormationCertifiee" class="cr">Oui</label>
+                                    <input type="radio" asp-for="FormationCertifiee" value="false" style="margin-left: 130px; width: 22px; height: 22px; background-color: blue ">
+                                    <label asp-for="FormationCertifiee " class="cr">Non</label>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description">Description de la formation</label>
+                                <textarea asp-for="Description" class="form-control" id="description" rows="2"></textarea>
+                            </div>
+                            <button type="reset" class="btn  btn-danger fa-pull-right" style="margin-left:15px;"><a class="text-white" asp-controller="Formation" asp-action="Index">Annuler</a></button>
+                            <button type="submit" class="btn  btn-primary fa-pull-right">Ajouter</button>
+                        </form>
                     </div>
                 </div>
-
             </div>
-            <!-- [ form-element ] end -->
         </div>
+    </div>
+    <div class="col-sm-2"></div>
+    <!-- [ form-element ] end -->
+</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

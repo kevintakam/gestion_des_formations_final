@@ -1,0 +1,91 @@
+﻿@model gestion_des_formations_final.Models.SessionsVm
+
+@{
+    Layout = null;
+}
+<div>
+    <dl class="row">
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            Formation:
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @ViewBag.Session.Formation.Intitule
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.DateDebut):
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.DateDebut)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.DateFin):
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.DateFin)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Statut):
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            Lieu - Salle:
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @ViewBag.SalleId.Salle.Lieu - @ViewBag.SalleId.Salle.Designation
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            Nombre de Participants:
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @ViewBag.participants
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Statut):
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8 text-success">
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            Formateur:
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+           Mr/Mlle.  @ViewBag.FormateurId.Formateur.Nom
+        </dd>
+    </dl>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => model.DateAjout)
+        </dt>
+        <dd class="col-md-3">
+            @Html.DisplayFor(model => model.DateAjout)
+            :
+            @Model.DateAjout.ToShortTimeString()
+        </dd>
+        <dt class="col-md-1">
+            Par
+        </dt>
+        <dd class="col-md-6">
+            Armelle-Eliane
+        </dd>
+
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => model.DateModif)
+        </dt>
+        <dd class="col-md-3">
+            @Html.DisplayFor(model => model.DateModif)
+            :
+            @Model.DateModif.ToShortTimeString()
+        </dd>
+        <dt class="col-md-1">
+            Par
+        </dt>
+        <dd class="col-md-6">
+            Armelle-Eliane
+        </dd>
+    </dl>
+</div>
+

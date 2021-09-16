@@ -1,4 +1,8 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿
+function ViewAjaxCallModal(lien, idvue) {
 
-// Write your JavaScript code.
+    var vuemodaldiv = idvue + 'Div'; // le modal body doit obligatoirement finir avec le mot Div
+    $(vuemodaldiv).load(lien, function () {
+        $(idvue).modal("show");
+    });
+}

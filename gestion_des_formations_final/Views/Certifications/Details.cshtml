@@ -1,0 +1,59 @@
+﻿@model gestion_des_formations_final.Models.Certification
+@{
+    Layout = null;
+    ViewData["TitreViewModal"] = "DETAILS DE LA CERTIFICATION";
+}
+
+<div class="row">
+    <div>
+        <div>
+            <div>
+                <h5>@Html.DisplayFor(model => model.Designation)</h5>
+            </div>
+            <hr />
+            <br />
+            <div>
+                <h5>Objectif</h5>
+                <p>
+                    @Html.DisplayFor(model => model.Description)
+                </p>
+                <span style="margin-right: 80px; font-weight: bold; font-size: 16px;"> @Html.DisplayNameFor(model => model.Organisme.Designation): <i class="text-danger">@Html.DisplayFor(model => model.Organisme.Designation)</i></span>
+                <span style="font-weight: bold;font-size:16px;">
+                </span>
+            </div>
+        </div>
+        <hr />
+
+        <dl class="row">
+
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.DateAjout)
+            </dt>
+            <dd class="col-md-3">
+                @Html.DisplayFor(model => model.DateAjout)
+                :
+                @Model.DateAjout.ToShortTimeString()
+            </dd>
+            <dt class="col-md-1">
+                Par
+            </dt>
+            <dd class="col-md-6">
+                Armelle-eliane
+            </dd>
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.DateModif)
+            </dt>
+            <dd class="col-md-3">
+                @Html.DisplayFor(model => model.DateModif)
+                :
+                @Model.DateModif.ToShortTimeString()
+            </dd>
+            <dt class="col-md-1">
+                Par
+            </dt>
+            <dd class="col-md-6">
+                Armelle-eliane
+            </dd>
+        </dl>
+    </div>
+</div>

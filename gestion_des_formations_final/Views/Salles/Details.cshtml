@@ -1,0 +1,22 @@
+﻿@model gestion_des_formations_final.Models.Salle
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-7">
+        <dl class="row">
+            <dt class="col-md-4">
+                @Html.DisplayNameFor(model => model.Designation)
+            </dt>
+            <dd class="col-md-8">
+                @Html.DisplayFor(model => model.Designation)
+            </dd>
+            <dt class="col-md-4">
+                @Html.DisplayNameFor(model => model.Lieu)
+            </dt>
+            <dd class="col-md-8">
+                @Html.DisplayFor(model => model.Lieu)
+            </dd>
+        </dl>
+    </div>
+</div>

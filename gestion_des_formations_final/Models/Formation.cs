@@ -22,5 +22,7 @@ namespace gestion_des_formations_final.Models
         public string Description { get; set; }
         [Display(Name = "Formation certifiee ")]
         public bool FormationCertifiee { get; set; }
+        public DateTime DateAjout { get; set; }
+        public DateTime DateModif { get; set; }
     }
 }

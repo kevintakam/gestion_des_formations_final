@@ -1,0 +1,57 @@
+﻿<!--Index de formation-->
+<!-- [ Main Content ] start -->
+@model IEnumerable<gestion_des_formations_final.Models.TypeDocument>
+
+<div class="row">
+    <!-- Multi-column table start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="TypeDocuments" asp-action="Create"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter un type de document</a></button>
+            </div>
+            <div class="card-body">
+                    <table id="res-config" class="display table table-striped table-hover dt-responsive nowrap" style="width:100%">
+                        <thead class="text-center">
+                            <tr>
+                                <th> @Html.DisplayNameFor(model => model.Intitule)</th>
+                                <th> @Html.DisplayNameFor(model => model.Description)</th>
+
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Intitule)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+
+                                    <td class="text-center">
+                                        <a asp-controller="TypeDocuments" asp-action="Edit" asp-route-id="@item.TypeDocumentId" class="text-success"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a onclick="ViewAjaxCallModal('/TypeDocuments/Details/@item.TypeDocumentId', '#ViewModal')" data-toggle="ajax-modal" data-target="#ViewModal" d class="text-primary"><i class="fa fa-eye"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot></tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Multi-column table end -->
+
+
+@section Scripts {
+
+    <script>
+
+
+
+    </script>
+}

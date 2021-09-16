@@ -1,0 +1,55 @@
+﻿/* ce bout bout assure la responsivité sur les écrans de device de width 870 pixels des  */
+@media(max-width:870px) {
+    #datesession {
+        display: block;
+    }
+    #formation {
+        display: block;
+    }
+    #salle{
+        display: block;
+    }
+    #formateur {
+        display: block;
+    }
+    input{
+        width:100%;
+    }
+}
+    @media(min-width:870px) {
+        #Datedebut {
+        margin-left:130px;
+        }
+        #datefinlbl {
+            margin-left: 140px;
+        }
+    }
+@media(min-width:1200px) {
+    #datedebutlbl {
+        margin-left: 10px;
+    }
+    #Datedebut {
+        margin-left: 220px;
+        width:230px;
+    }
+
+    #datefinlbl {
+        margin-left: 140px;
+    }
+    #Datefin {
+        margin-left: 30px;
+        width: 230px;
+    }
+}
+@media(min-width:1200px) {
+    #encours {
+        margin-left: 10px;
+    }
+    #planifie {      
+        margin-left:100px;
+    }
+    #termine {
+        margin-left: 100px;
+    }
+
+}

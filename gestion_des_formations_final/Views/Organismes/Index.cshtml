@@ -1,0 +1,100 @@
+﻿<!--Index de formation-->
+<!-- [ Main Content ] start -->
+@model IEnumerable<gestion_des_formations_final.Models.Organisme>
+
+<div class="row">
+    <!-- Multi-column table start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Organismes" asp-action="Create"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter un organisme</a></button>
+            </div>
+            <div class="card-body">
+                    <table id="res-config" class="display table table-striped table-hover dt-responsive nowrap" style="width:100%">
+                        <thead class="text-center">
+                            <tr>
+                                <th> @Html.DisplayNameFor(model => model.Sigle)</th>
+                                <th> @Html.DisplayNameFor(model => model.Designation)</th>
+                                <th> @Html.DisplayNameFor(model => model.SiteWeb)</th>
+                               
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sigle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Designation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SiteWeb)
+                                </td>
+                        
+                                <td class="text-center">
+                                    <a asp-controller="Organismes" asp-action="Edit" asp-route-id="@item.OrganismeId" class="text-success"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a onclick=" ViewAjaxCallModal('/Organismes/Details/@item.OrganismeId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal" class="text-primary"><i class="fa fa-eye"></i></a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                        <tfoot></tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Multi-column table end -->
+
+
+
+@section Scripts {
+
+    <script>
+        function Delete(id) {
+            sweetAlert
+                ({
+                    title: "êtes vous sûre",
+                    text: "de vouloir supprimer cet organsime ?",
+                    type: "Warning",
+                    dangerMode: true,
+                    buttons: ["Annuler", "Supprimer"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: "Organismes/Delete/",
+                            data:
+                            {
+                                id: id
+                            },
+                            type: "GET",
+                            success: function (data) {
+                                console.log(data);
+
+                                sweetAlert(
+                                    'Deleted',
+                                    'Votre suppression a bien été éffectuée',
+                                    'success'
+                                ).then(function () {
+                                    location.reload();
+                                })
+
+                            }
+                        });
+                    } else {
+                        swal("Oops!!!!", "annulation de la suppression", "error");
+
+                    }
+
+                });
+        };
+
+
+    </script>
+}

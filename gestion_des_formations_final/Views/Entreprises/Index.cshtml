@@ -1,0 +1,118 @@
+﻿@model IEnumerable<gestion_des_formations_final.Models.Entreprise>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <!-- Multi-column table start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Entreprises" asp-action="Create"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une entreprise</a></button>
+            </div>
+            <div class="card-body">
+                <table id="res-config" class="display table table-striped table-hover dt-responsive nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Designation)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SecteurActivité)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PersonneResponsable)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Metier)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Telephone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Designation)
+                            </td>
+                            <td>
+                                @item.SecteurActivité
+                            </td>
+                            <td>
+                                @item.PersonneResponsable
+                            </td>
+                            <td>
+                                @item.Metier
+                            </td>
+                            <td>
+                                @item.Telephone
+                            </td>
+                            <td>
+                                @item.Email
+                            </td>
+                            <td>
+                                <a class="text-success" asp-action="Edit" asp-route-id="@item.EntrepriseId"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a class="text-primary" onclick=" ViewAjaxCallModal('/Entreprises/Details/@item.EntrepriseId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        function Delete(id) {
+            $.ajax({
+                url: "FormateurTemporaire/Delete/",
+                data:
+                {
+                    id: id
+                },
+                type: "GET",
+                success: function (data) {
+                    console.log(data);
+                    sweetAlert
+                        ({
+                            title: "êtes vous sûre",
+                            text: "de vouloir archiver l'entreprise",
+                            type: "Warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: "oui!",
+                            cancelButtonText: 'No!',
+                        }).then(function (isConfirm) {
+                            if (isConfirm) {
+                                sweetAlert(
+                                    'Deleted',
+                                    'votre Entreprise a bien été archivée',
+                                    'success'
+                                ),
+                                    location.reload();
+                            } else {
+                                swal("Oops!!!!", "une erreur s'est produite", "error");
+                            }
+                        });
+                },
+                error: function (data) {
+                    swal("Oops!!!!", "une erreur s'est produite", "error");
+                }
+            });
+        }
+
+    </script>
+}

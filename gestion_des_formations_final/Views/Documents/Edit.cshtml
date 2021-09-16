@@ -1,0 +1,50 @@
+﻿@model gestion_des_formations_final.Models.DocumentsVm
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <!-- [ form-element ] start -->
+    <div class="col-sm-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form asp-action="Edit" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="DocumentId" />
+                            <input type="hidden" asp-for="Contenu" />
+                            <div class="form-group">
+                                <label asp-for="TypeDocumentId" class="control-label">Modèle<span class="text-c-blue">*</span></label>
+                                <select asp-for="TypeDocumentId" class=" js-example-data-array form-control" asp-items="ViewBag.TypeDocumentId"></select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Nom">Nom<span class="text-c-blue">*</span></label>
+                                <input type="text" asp-for="Nom" class="mb-3 form-control form-control-sm" placeholder="Entrer le nom du fichier">
+                                <span asp-validation-for="Nom" class="form-text  text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SessionId" class="control-label">Session<span class="text-c-blue">*</span></label>
+                                <select asp-for="SessionId" class=" js-example-data-array form-control" asp-items="@ViewBag.sessions"></select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Contenu" class="control-label">Contenu<span class="text-c-blue"></span></label>
+                                <input asp-for="Contenu" class="form-control" type="file" />
+                                <span asp-validation-for="Contenu" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <button type="reset" class="btn  btn-danger"><a class="text-white" asp-controller="Documents" asp-action="Index"> Annuler</a></button>
+                                <input type="submit" value="Mise à jour" class="btn  btn-primary fa-pull-right" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

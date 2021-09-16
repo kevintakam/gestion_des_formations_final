@@ -1,36 +1,58 @@
-﻿
-
-     
-        <!-- [ Main Content ] start -->
-        <div class="row">
-            <!-- card réservée pour les chiffres  -->
-            <div class="col-md-6 col-xl-3">
-                <div class="card bg-c-blue order-card">
-                    <div class="card-body" style="margin-bottom:32%">
-                        
-                    </div>
+﻿<!-- [ Main Content ] start -->
+<div class="row">
+    <!-- card réservée pour les chiffres  -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card bg-c-blue order-card" onclick="sessionencours()">
+                <div class="card-body">
+                    <h6><a class="text-white" asp-controller="Sessions" asp-action="SessionsEnCours">Sessions <br />en cours</a></h6>
+                    <h2 class="text-right text-white">
+                        <i class="fas fa-x fa-calendar-day float-left"></i>
+                        <span style="font-size:36px;">@ViewBag.sessions_encours</span>
+                    </h2>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card bg-c-green order-card">
-                    <div class="card-body" style="margin-bottom:32%">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card bg-c-yellow order-card">
-                    <div class="card-body" style="margin-bottom:32%">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card bg-c-red order-card">
-                    <div class="card-body" style="margin-bottom:32%">
-                        
-                    </div>
-                </div>
-            </div>
-            <!-- fin de la partie card -->
         </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-green order-card" onclick="sessionsplanifiees()">
+            <div class="card-body">
+                <h6 class="text-white"><a class="text-white" asp-controller="Sessions" asp-action="Index">Sessions<br /> Planifiées <br /></a></h6>
+                <h2 class="text-right text-white"><a class="text-white" asp-controller="Sessions" asp-action="Index"><i class="fa fa-calendar-day float-left"></i><span style="font-size:36px;"></a>@ViewBag.sessions_planifie</span></h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-yellow order-card"  onclick="formateurs()">
+            <div class="card-body">
+                <h6 class="text-white">Formateurs <br /> en attente d'approbation</h6>
+                <h2 class="text-right text-white"><i class="fa fa-users float-left"></i><span style="font-size:36px;">@ViewBag.formateursT</span></h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-c-red order-card" onclick="formationscertifiantes()">
+            <div class="card-body">
+                <h6 class="text-white">Formations <br /> certifiantes</h6>
+                <h2 class="text-right text-white"><i class="fas fa-fw fa-th float-left"></i><span style="font-size:36px;">@ViewBag.formations</span></h2>
+            </div>
+        </div>
+    </div>
+    <!-- fin de la partie card -->
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    function sessionencours() {
+        location.href='/Sessions/SessionsEnCours';
+    }
+    function sessionsplanifiees() {
+        location.href = '/Sessions/Index';
+    }
+    function formationscertifiantes() {
+        location.href = '/Formation/Index';
+    }
+    function formateurs() {
+        location.href = '/FormateurTemporaire/Index';
+    }
+
+    </script>
+}

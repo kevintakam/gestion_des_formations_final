@@ -1,0 +1,50 @@
+﻿@model IEnumerable<gestion_des_formations_final.Models.Salle>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <!-- Multi-column table start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Salles" asp-action="Create"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une salle</a></button>
+            </div>
+            <div class="card-body">
+                <table id="res-config"  class="display table table-striped table-hover dt-responsive nowrap" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Designation)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lieu)
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Designation)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Lieu)
+                            </td>
+                            <td>
+                                &nbsp;&nbsp;&nbsp;
+                                <a class="text-success" asp-action="Edit" asp-route-id="@item.SalleId"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a class="text-primary" onclick=" ViewAjaxCallModal('/Salles/Details/@item.SalleId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

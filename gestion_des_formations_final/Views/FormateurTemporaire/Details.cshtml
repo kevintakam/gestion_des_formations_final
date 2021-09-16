@@ -1,0 +1,131 @@
+﻿@model gestion_des_formations_final.Models.FormateurTemporaire
+@{ 
+    Layout = null;
+}
+<div>
+    <dl class="row">
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Cv)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            <a href="~/CVFormateur/@Html.DisplayFor(model => model.Cv)" target="_blank"><i class="fas fa-file-alt" style="max-width:100px;"></i></a>
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.NumeroCni)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.NumeroCni)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+        @if (Model.Statut =="Approuvé")
+        {
+            <dd class="col-sm-8 col-md-8 col-lg-8 text-success">
+                @Html.DisplayFor(model => model.Statut)
+            </dd>
+        }
+        else
+        {
+            <dd class="col-sm-8 col-md-8 col-lg-8 text-danger">
+                @Html.DisplayFor(model => model.Statut)...
+            </dd>
+        }
+
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.NbreAnneeExperience)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.NbreAnneeExperience)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.NiveauAcademique)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.NiveauAcademique)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Certifications)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.Certifications)
+        </dd>
+        <dt class="col-sm-4 col-md-4 col-lg-4">
+            @Html.DisplayNameFor(model => model.Specialités)
+        </dt>
+        <dd class="col-sm-8 col-md-8 col-lg-8">
+            @Html.DisplayFor(model => model.Specialités)
+        </dd>
+    </dl>
+    <hr />
+
+    <dl class="row">
+
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => model.DateAjout)
+        </dt>
+        <dd class="col-md-3">
+            @Html.DisplayFor(model => model.DateAjout)
+            :
+            @Model.DateAjout.ToShortTimeString()
+        </dd>
+        <dt class="col-md-1">
+            Par
+        </dt>
+        <dd class="col-md-6">
+            Armelle-Eliane
+        </dd>
+
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => model.DateModif)
+        </dt>
+        <dd class="col-md-3">
+            @Html.DisplayFor(model => model.DateModif)
+            :
+            @Model.DateModif.ToShortTimeString()
+        </dd>
+        <dt class="col-md-1">
+            Par
+        </dt>
+        <dd class="col-md-6">
+            Armelle-Eliane
+        </dd>
+    </dl>
+</div>
+

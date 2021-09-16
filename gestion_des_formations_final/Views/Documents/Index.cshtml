@@ -1,0 +1,55 @@
+﻿@model IEnumerable<gestion_des_formations_final.Models.Document>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row">
+    <!-- Multi-column table start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="TypeDocuments" asp-action="Home"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter un document</a></button>
+            </div>
+            <div class="card-body">
+                <table id="res-config"  class="display table table-striped table-hover dt-responsive nowrap" width="100%">
+                    <thead class="text-center">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nom)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TypeDocument)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Session)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeDocument.Intitule)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Session.Formation.Intitule)
+                            </td>
+                            <td>
+                                <a class="text-success" asp-action="Edit" asp-route-id="@item.DocumentId"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a class="text-primary" onclick=" ViewAjaxCallModal('/Documents/Details/@item.DocumentId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
+                                <!-- <a asp-action="Delete" asp-route-id="@item.DocumentId">Delete</a> -->
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

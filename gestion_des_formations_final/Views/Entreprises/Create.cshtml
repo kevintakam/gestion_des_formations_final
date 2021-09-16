@@ -1,0 +1,81 @@
+﻿@model gestion_des_formations_final.Models.Entreprise
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <!-- [ form-element ] start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form asp-action="Create" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Designation" class="control-label">Designation<span class="text-c-blue">*</span></label>
+                                        <input asp-for="Designation" class="form-control" placeholder="Entrer la désignation de l'entreprise" />
+                                        <span asp-validation-for="Designation" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="SecteurActivité" class="control-label">Secteurs d'activités</label>
+                                        <input asp-for="SecteurActivité" class="form-control" placeholder="Entrer le(s) secteur(s) d'activité(s)" />
+                                        <span asp-validation-for="SecteurActivité" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="PersonneResponsable" class="control-label">Responsable à contacter<span class="text-c-blue">*</span></label>
+                                        <input asp-for="PersonneResponsable" class="form-control" placeholder="Entrer le nom du responsable à contacter" />
+                                        <span asp-validation-for="PersonneResponsable" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Metier" class="control-label">Metier</label>
+                                        <input asp-for="Metier" class="form-control" placeholder="Entrer le metier de la personne responsable" />
+                                        <span asp-validation-for="Metier" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="Siteweb" class="control-label"> Site Web</label>
+                                        <input asp-for="Siteweb" class="form-control" placeholder="Entrer le site web de l'entreprise" />
+                                        <span asp-validation-for="Siteweb" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="Telephone" class="control-label">Telephone<span class="text-c-blue">*</span></label>
+                                        <input type="tel" asp-for="Telephone" maxlength="9" class="form-control" placeholder="Entrer le numéro de téléphone" />
+                                        <span asp-validation-for="Telephone" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Email" class="control-label">Email</label>
+                                        <input asp-for="Email" class="form-control" placeholder="Entrer le mail de l'entreprise" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Boitepostale" class="control-label">Boite Postale</label>
+                                        <input asp-for="Boitepostale" class="form-control" placeholder="Entrer la boite postale" />
+                                        <span asp-validation-for="Boitepostale" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                               
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn  btn-danger" style="align-content:center"><a class="text-white" asp-controller="Entreprises" asp-action="Index"> Retour</a></button>
+                                        <input type="submit" value="Ajouter" class="btn  btn-primary fa-pull-right" />
+                                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                @section Scripts {
+                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                }

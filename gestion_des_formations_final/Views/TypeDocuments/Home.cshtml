@@ -1,0 +1,64 @@
+﻿@model IEnumerable<gestion_des_formations_final.Models.TypeDocument>
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="text-primary">Sélectionner le modèle de document que vous souhaitez importer?</h4>
+            <div class="card-header-right">
+                <div class="btn-group card-option">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="feather icon-more-horizontal"></i>
+                    </button>
+                    <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                        ``
+                        <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
+                        <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
+                        <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
+                        <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <div class="card-body text-center">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <h5>@item.Intitule</h5>
+                        @if (item.Intitule == "attestation")
+                        {
+                            <a asp-controller="Documents" asp-action="ImporterDocument" asp-route-id="@item.TypeDocumentId"><img src="~/assets/images/attestation1.png" alt="img" class="img-fluid animation-toggle animated" data-animate="pulse"></a>
+                        }
+                        @if (item.Intitule == "fiche evaluation")
+                        {
+                            <a asp-controller="Documents" asp-action="ImporterDocument" asp-route-id="@item.TypeDocumentId"><img src="~/assets/images/ficheevaluation.png" alt="img" class="img-fluid animation-toggle animated" data-animate="pulse"></a>
+                        }
+                        @if (item.Intitule == "fiche presence")
+                        {
+                            <a asp-controller="Documents" asp-action="ImporterDocument" asp-route-id="@item.TypeDocumentId"><img src="~/assets/images/fichepresence.png" alt="img" class="img-fluid animation-toggle animated" data-animate="pulse"></a>
+                        }
+                        @if (item.Intitule == "fiche inscription")
+                        {
+                            <a asp-controller="Documents" asp-action="ImporterDocument" asp-route-id="@item.TypeDocumentId"><img src="~/assets/images/ficheinscription.png" alt="img" class="img-fluid animation-toggle animated" data-animate="pulse"></a>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
+ 
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.animation-toggle').hover(function () {
+                var anim = $(this).attr('data-animate');
+                $(this).addClass('animated');
+                $(this).addClass(anim);
+                setTimeout(function () {
+                    $('.animation-toggle').removeClass(anim);
+                }, 3000);
+            });
+        });
+    </script>
+}

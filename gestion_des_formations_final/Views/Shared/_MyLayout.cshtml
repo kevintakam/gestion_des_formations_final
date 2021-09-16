@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -14,9 +13,13 @@
     <link rel="icon" href="~/assets/images/LogoSecelSansFond.PNG" type="image/x-icon">
     <!-- data tables css -->
     <link rel="stylesheet" href="~/assets/css/plugins/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/responsive.bootstrap4.min.css">
+    <!-- select2 css -->
+    <link rel="stylesheet" href="~/assets/css/plugins/select2.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="~/assets/css/style.css">
-   
+    <link href="~/assets/css/style2.css" rel="stylesheet" />
+
 </head>
 <body>
     <!-- [ Pre-loader ] start -->
@@ -31,37 +34,41 @@
         <div class="navbar-wrapper  ">
             <div class="navbar-content scroll-div ">
                 <ul class="nav pcoded-inner-navbar ">
-
                     <li class="">
                         <a asp-controller="Home" asp-action="Index"><span class="pcoded-micon"><i class="fas fa-fw fa-tachometer-alt"></i></span><span class="pcoded-mtext">Tableau de Bord</span></a>
                     </li>
-
                     <li class="nav-item pcoded-menu-caption">
-
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="#!"><span class="pcoded-micon"><i class="fas fa-x fa-calendar-day"></i></span><span class="pcoded-mtext">Gestion Sessions</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a asp-controller="Sessions" asp-action="AjouterUneSession">Nouvelle session</a></li>
+                            <li><a asp-controller="Sessions" asp-action="SessionsEnCours">sessions en cours</a></li>
+                            <li><a asp-controller="Sessions" asp-action="Index">sessions planifiées</a></li>
+                            <li><a href="#">sessions terminées</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item pcoded-menu-caption">
                     <li class="nav-item pcoded-hasmenu">
                         <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-fw fa-th"></i></span><span class="pcoded-mtext">Gestion Formations</span></a>
                         <ul class="pcoded-submenu">
-                            <li><a asp-controller="Formation" asp-action="Index"> Nos Formations</a></li>
-                            <li><a asp-controller="Formateur" asp-action="Index"> Nos Formateurs</a></li>
-                            <li class="pcoded-hasmenu">
-                                <a href="#!"><span class="pcoded-micon"><i class="fas fa-x fa-table"></i></span><span class="pcoded-mtext">Sessions</span></a>
-                                <ul class="pcoded-submenu">
-                                    <li><a href="#">Nouvelle session</a></li>
-                                    <li><a href="#">sessions en cours</a></li>
-                                    <li><a href="#">sessions planifiées</a></li>
-                                    <li><a href="#">sessions terminées</a></li>
-                                </ul>
-                            </li>
-                            <li class="pcoded-hasmenu">
-                                <a href="#!"><span class="pcoded-micon"><i class="fas fa-x fa-book"></i></span><span class="pcoded-mtext">Documents</span></a>
-                                <ul class="pcoded-submenu">
-                                    <li><a href="#">Génerer un document</a></li>
-                                    <li><a href="#" t>Nos archives</a></li>
-                                </ul>
+                            <li><a asp-controller="Formation" asp-action="Index"> Formation</a></li>
+                            <li><a asp-controller="FormateurTemporaire" asp-action="Index">Formateur Consultant</a></li>
+                            <li>
+                                <a asp-controller="Documents" asp-action="Index"><span>Document</span></a>
                             </li>
                         </ul>
                     </li>
-
+                    <li class="nav-item pcoded-menu-caption">
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-database "></i></span><span class="pcoded-mtext">Données</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a asp-controller="Certifications" asp-action="Index">Certification</a></li>
+                            <li><a asp-controller="Entreprises" asp-action="Index">Entreprise</a></li>
+                            <li><a asp-controller="Organismes" asp-action="Index">Organisme</a></li>
+                            <li><a asp-controller="Salles" asp-action="Index">Salle</a></li>
+                            <li><a asp-controller="TypeDocuments" asp-action="Index">Type Document</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item pcoded-menu-caption">
                     <li class="pcoded-hasmenu">
                         <a href="#!"><span class="pcoded-micon"><i class="fas fa-fw fa-cog"></i></span><span class="pcoded-mtext">Administration</span></a>
@@ -122,6 +129,7 @@
                         </div>
                     </div>
                 </li>
+                <li><a class="text-white" onclick="reload()"><i class="feather icon-refresh-cw"></i></a></li>
                 <li>
                     <div class="dropdown">
                         <!-- <a href="#" class="displayChatbox dropdown-toggle"><i class="icon feather icon-mail"></i></a>-->
@@ -295,7 +303,28 @@
         <div class="pcoded-content">
             @RenderBody()
         </div>
+
+
     </section>
+    <!-- Modal pour détails -->
+
+    <div id="ViewModal" class="modal fade ">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">@ViewBag.second_title </h4>
+                    <button type="button" class="close" data-dismiss="modal"> <span aria-hidden="true">×</span> </button>
+                </div>
+                <div class="modal-body" id="ViewModalDiv"></div>
+
+                @*<div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <script src="~/js/site.js"></script>
 
 
     <script src="~/assets/js/vendor-all.min.js"></script>
@@ -306,6 +335,8 @@
     <!-- Apex Chart -->
     <script src="~/assets/js/plugins/apexcharts.min.js"></script>
     <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script src="~/assets/js/plugins/dataTables.responsive.min.js"></script>
+    <script src="~/assets/js/pages/data-responsive-custom.js"></script>
     <script src="~/assets/js/plugins/dataTables.bootstrap4.min.js"></script>
     <script src="~/assets/js/pages/data-basic-custom.js"></script>
     <script src="~/assets/js/plugins/jquery-ui.min.js"></script>
@@ -313,8 +344,34 @@
     <script src="~/assets/js/plugins/PNotify.js"></script>
     <!-- custom-chart js -->
     <script src="~/assets/js/pages/dashboard-main.js"></script>
+    <script src="~/js/site.js"></script>
+    <!--Wizard form-->
+    <script src="~/assets/js/plugins/jquery.bootstrap.wizard.min.js"></script>
     <!-- sweet alert Js -->
     <script src="~/assets/js/plugins/sweetalert.min.js"></script>
+    <!--data export-->
+    <!-- datatable Js -->
+    <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script src="assets/js/plugins/dataTables.bootstrap4.min.js"></script>
+    <script src="assets/js/plugins/buttons.colVis.min.js"></script>
+    <script src="assets/js/plugins/buttons.print.min.js"></script>
+    <script src="assets/js/plugins/pdfmake.min.js"></script>
+    <script src="assets/js/plugins/jszip.min.js"></script>
+    <script src="assets/js/plugins/dataTables.buttons.min.js"></script>
+    <script src="assets/js/plugins/buttons.html5.min.js"></script>
+    <script src="assets/js/plugins/buttons.bootstrap4.min.js"></script>
+    <script src="assets/js/pages/data-export-custom.js"></script>
+
+    <!-- select2 Js -->
+    <script src="~/assets/js/plugins/select2.full.min.js"></script>
+    <!--wizard-->
+    <script src="~/assets/js/plugins/jquery.bootstrap.wizard.min.js"></script>
+    <script>
+        function reload() {
+            location.reload();
+        }
+    </script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

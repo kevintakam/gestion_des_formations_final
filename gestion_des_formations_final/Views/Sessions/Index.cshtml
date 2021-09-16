@@ -1,0 +1,76 @@
+﻿@model IEnumerable<gestion_des_formations_final.Models.Session>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <!-- Multi-column table start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Sessions" asp-action="AjouterUneSession"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une Nouvelle session</a></button>
+            </div>
+            <div class="card-body">
+                <table id="res-config" class="display table table-striped table-hover dt-responsive nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Formation)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateDebut)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateFin)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Statut)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Salle)
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            @if (item.Statut == "planifié")
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Formation.Intitule)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateDebut)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateFin)
+                                </td>
+
+                                <td>
+                                    <div><label class="badge badge-light-warning">@Html.DisplayFor(modelItem => item.Statut)</label></div>
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Salle.Designation)
+                                </td>
+                                <td>
+                                    <a asp-action="ModifierUneSession" asp-route-id="@item.SessionId"><i class="icon feather icon-edit f-16 text-c-green"></i></a>
+
+                                    <!--<a asp-action="Delete" asp-route-id="@item.SessionId"><i class="feather icon-trash-2 ml-3 f-16 text-c-red"></i></a>-->
+                                    &nbsp;
+                                    <a class="text-primary" onclick=" ViewAjaxCallModal('/Sessions/Details/@item.SessionId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
+                                    &nbsp; &nbsp;
+                                    <a href="#"><i class="fa fa-archive text-c-red"></i></a>
+                                </td>
+                            }
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

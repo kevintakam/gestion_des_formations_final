@@ -1,4 +1,5 @@
-﻿using gestion_des_formations_final.Models;
+﻿using gestion_des_formations_final.Data;
+using gestion_des_formations_final.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,17 +12,22 @@ namespace gestion_des_formations_final.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
+
 
         public IActionResult Index()
         {
-                ViewData["Title"] = "Gestion des formations";
+            ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Tableau de bord";
+            ViewData["sessions_encours"] = _context.Session.Where(t => t.Statut == "en cours").Count();
+            ViewData["sessions_planifie"] = _context.Session.Where(t => t.Statut == "planifié").Count();
+            ViewData["formateursT"] = _context.FormateurT.Where(t => t.Statut == "en cours d'approbation").Count();
+            ViewData["formations"] = _context.Formation.Where(t => t.FormationCertifiee == true).Count();
             return View(ViewData);
         }
 

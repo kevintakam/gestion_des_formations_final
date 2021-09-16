@@ -1,0 +1,147 @@
+﻿@model gestion_des_formations_final.Models.FormateurTemporaire
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <!-- [ form-element ] start -->
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-12">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div class="col-md-12  fa-pull-right">
+                            <span class="text-danger fa-pull-right">@ViewBag.message</span>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row col-sm-12">
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Nom" class="control-label">Nom<span class="text-c-blue">*</span></label>
+                                <input asp-for="Nom" class=" form-control" placeholder="Entrer le nom du formateur" />
+                                <span asp-validation-for="Nom" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Prenom" class="control-label">Prenom</label>
+                                <input asp-for="Prenom" class="form-control" placeholder="Entrer le Prenom du formateur" />
+                                <span asp-validation-for="Prenom" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Email" class="control-label">Email<span class="text-c-blue">*</span></label>
+                                <input asp-for="Email" class="form-control" placeholder="Entrer le mail du formateur" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row col-sm-12">
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Telephone" class="control-label">Téléphone<span class="text-c-blue">*</span></label>
+                                <input asp-for="Telephone" class="mb-3 form-control form-control-sm only_integer" placeholder="Entrer le numéro du formateur" type="tel" id="Telephone" />
+                                <span asp-validation-for="Telephone" class="text-danger" id="Telephone-help"></span>
+                            </div>
+
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Cv" class="control-label">Curriculum Vitae</label>
+                                <input asp-for="Cv" class="form-control" type="file" />
+                                <span asp-validation-for="Cv" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label asp-for="NiveauAcademique" class="control-label">Niveau Académique</label>
+                                <input asp-for="NiveauAcademique" class="form-control" placeholder="Entrer le niveau académique du formateur" />
+                                <span asp-validation-for="NiveauAcademique" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row col-sm-12">
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Specialités" class="control-label">Spécialités</label>
+                                <input asp-for="Specialités" class="form-control" placeholder="Entrer la ou les spécialités du formateur" />
+                                <span asp-validation-for="Specialités" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Adresse" class="control-label">Adresse</label>
+                                <input asp-for="Adresse" class=" form-control" placeholder="Entrer l'adresse du formateur" />
+                                <span asp-validation-for="Adresse" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Certifications" class="control-label">Certification(s)</label>
+                                <input asp-for="Certifications" class="form-control" placeholder="Entrer la ou les certifications du formateur" />
+                                <span asp-validation-for="Certifications" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row col-sm-12">
+                            <div class="form-group col-sm-4">
+                                <label asp-for="NbreAnneeExperience" class="control-label">Années d'expérience<span class="text-c-blue">*</span></label>
+                                <input asp-for="NbreAnneeExperience" class=" form-control form-control-sm only_integer" placeholder="Entrer le nombre d'années d'expériences du formateur" type="tel" id="nbr" />
+                                <span asp-validation-for="NbreAnneeExperience" class="text-danger" id="nbr-help"></span>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label asp-for="NumeroCni" class="control-label">Numéro CNI<span class="text-c-blue">*</span></label>
+                                <input asp-for="NumeroCni" class=" form-control form-control-sm only_integer" placeholder="Entrer le nombre d'années d'expériences du formateur" type="tel" id="nbr" />
+                                <span asp-validation-for="NumeroCni" class="text-danger" id="nbr-help"></span>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label asp-for="Statut" class="control-label"></label>
+                                <label asp-for="Statut" class="control-label"><span class="text-c-blue">*</span></label>
+                                <div class="row">
+                                    <input type="radio" asp-for="Statut" value="Approuvé" style="margin-left: 10px; width: 20px; height: 22px;">
+                                    <label asp-for="Statut" class="cr">Approuvé</label>
+                                    <input type="radio" asp-for="Statut" value="En cours d'approbation" style="margin-left: 100px; width: 20px; height: 22px;" checked="">
+                                    <label asp-for="Statut" class="cr">En cours d'approbation</label>
+                                </div>
+                                <span asp-validation-for="Statut" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="row col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Type" class="control-label"></label>
+                                <label asp-for="Type" class="control-label"><span class="text-c-blue">*</span></label><br />
+                                <div class="row">
+                                    <input type="radio" asp-for="Type" value="Interne" style="margin-left: 20px; width: 22px; height: 22px;">
+                                    <label asp-for="Type" class="cr">Interne</label>
+                                    <input type="radio" asp-for="Type" value="Externe" style="margin-left: 130px; width: 22px; height: 22px;" checked="">
+                                    <label asp-for="Type " class="cr">Externe</label>
+                                </div>
+                                <span asp-validation-for="Type" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn  btn-danger" style="align-content:center"><a class="text-white" asp-controller="FormateurTemporaire" asp-action="Index"> Retour</a></button>
+                            <input type="submit" value="Ajouter" class="btn  btn-primary fa-pull-right" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $('#Telephone').hover(function () {
+                var b = $('#Telephone').val();
+                if ($.isNumeric(b)) {
+                    $('#Telephone-help').text(' ');
+                } else {
+                    $('#Telephone').text(" ");
+                    $('#Telephone').focus();
+                    $('#Telephone-help').text('entrer uniquement les chiffres');
+                }
+            }),
+                $(document).ready(function () {
+                    $('#nbr').hover(function () {
+                        var b = $('#nbr').val();
+                        if ($.isNumeric(b)) {
+                            $('#nbr-help').text(' ');
+                        } else {
+                            $('#nbr').text(" ");
+                            $('#nbr').focus();
+                            $('#nbr-help').text('entrer uniquement les chiffres');
+                        }
+                    });
+                });
+    </script>
+}

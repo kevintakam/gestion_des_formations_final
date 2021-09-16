@@ -14,16 +14,16 @@ namespace gestion_des_formations_final.Data
         {
 
         }
-        public DbSet<Assister> Assister { get; set; }
+        public DbSet<ParticipantSession> ParticipantSessions { get; set; }
         public DbSet<Certification> Certification { get; set; }
         public DbSet<Document> Document { get; set; }
         public DbSet<Entreprise> Entreprise { get; set; }
-        public DbSet<Formateur> Formateur { get; set; }
+        public DbSet<Formateur> FormateurP { get; set; }
+        public DbSet<FormateurTemporaire> FormateurT { get; set; }
         public DbSet<Formation> Formation { get; set; }
-        public DbSet<Lieu> Lieux { get; set; }
         public DbSet<Organisme> Organisme { get; set; }
         public DbSet<Participant> Participant { get; set; }
-        public DbSet<Prester> Prester { get; set; }
+        public DbSet<FormateurSession> FormateurSessions { get; set; }
         public DbSet<Privilege> Privilege { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<Salle> Salle { get; set; }
@@ -33,8 +33,9 @@ namespace gestion_des_formations_final.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Prester>().HasKey(t => new { t.FormateurId, t.SessionId });
-            modelBuilder.Entity<Assister>().HasKey(t => new { t.ParticipantId, t.SessionId });
+            modelBuilder.Entity<FormateurSession>().HasKey(t => new { t.FormateurId, t.SessionId });
+            modelBuilder.Entity<ParticipantSession>().HasKey(t => new { t.ParticipantId, t.SessionId });
+
         }
     }
 }

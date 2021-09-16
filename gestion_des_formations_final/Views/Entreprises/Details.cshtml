@@ -1,0 +1,103 @@
+﻿@model gestion_des_formations_final.Models.Entreprise
+@{ 
+    Layout = null;
+}
+<div class="row">
+    <div>
+        <dl class="row">
+            <dt class="col-sm-4 col-md-4 col-lg-4">
+                @Html.DisplayNameFor(model => model.Designation)
+            </dt>
+            <dd class="col-sm-8 col-md-8 col-lg-8">
+                @Html.DisplayFor(model => model.Designation)
+            </dd>
+            <br />
+
+            <dt class="col-sm-4 col-md-4 col-lg-4">
+                @Html.DisplayNameFor(model => model.SecteurActivité)
+            </dt>
+            <dd class="col-sm-8 col-md-8 col-lg-8">
+                @Html.DisplayFor(model => model.SecteurActivité)
+            </dd>
+            <br />
+            <br />
+            <dt class="col-sm-4 col-md-4 col-lg-4">
+                @Html.DisplayNameFor(model => model.PersonneResponsable)
+            </dt>
+            <dd class="col-sm-8 col-md-8 col-lg-8">
+                @Html.DisplayFor(model => model.PersonneResponsable)
+            </dd>
+            <br />
+            <br />
+            <dt class="col-sm-4 col-md-4 col-lg-4">
+                @Html.DisplayNameFor(model => model.Metier)
+            </dt>
+            <dd class="col-sm-8 col-md-8 col-lg-8">
+                @Html.DisplayFor(model => model.Metier)
+            </dd>
+            <br />
+            <br />
+            <dt class="col-sm-4 col-md-4 col-lg-4">
+                @Html.DisplayNameFor(model => model.Siteweb)
+            </dt>
+            <dd class="col-sm-8 col-md-8 col-lg-8">
+                @Html.DisplayFor(model => model.Siteweb)
+            </dd>
+            <br />
+            <br />
+            <dt class="col-sm-4 col-md-4 col-lg-4">
+                @Html.DisplayNameFor(model => model.Telephone)
+            </dt>
+            <dd class="col-sm-8 col-md-8 col-lg-8">
+                @Html.DisplayFor(model => model.Telephone)
+            </dd>
+            <dt class="col-sm-4 col-md-4 col-lg-4">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <br />
+            <dd class="col-sm-8 col-md-8 col-lg-8">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-4 col-md-4 col-lg-4">
+                @Html.DisplayNameFor(model => model.Boitepostale)
+            </dt>
+            <dd class="col-sm-8 col-md-8 col-lg-8">
+                @Html.DisplayFor(model => model.Boitepostale)
+            </dd>
+        </dl>
+        <hr />
+
+        <dl class="row">
+
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.DateAjout)
+            </dt>
+            <dd class="col-md-3">
+                @Html.DisplayFor(model => model.DateAjout)
+                :
+                @Model.DateAjout.ToShortTimeString()
+            </dd>
+            <dt class="col-md-1">
+                Par
+            </dt>
+            <dd class="col-md-6">
+                Armelle-eliane
+            </dd>
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.DateModif)
+            </dt>
+            <dd class="col-md-3">
+                @Html.DisplayFor(model => model.DateModif)
+                :
+                @Model.DateModif.ToShortTimeString()
+            </dd>
+            <dt class="col-md-1">
+                Par
+            </dt>
+            <dd class="col-md-6">
+                Armelle-eliane
+            </dd>
+        </dl>
+    </div>
+    
+</div>
