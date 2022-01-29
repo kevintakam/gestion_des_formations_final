@@ -9,24 +9,28 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Salles" asp-action="Create"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une salle</a></button>
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Salles" asp-action="AjouterUneSalle"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une salle</a></button>
+                <div class="fa-pull-right text-c-green" id="message" style="font-weight:bold;font-size:18px;">
+                    @if (TempData["success"] != null)
+                    {<p id="text-success" onchange="notify('bonjour','inverse')"> @TempData["success"]</p>}
             </div>
-            <div class="card-body">
-                <table id="res-config"  class="display table table-striped table-hover dt-responsive nowrap" width="100%">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Designation)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Lieu)
-                            </th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+        </div>
+        <div class="card-body">
+            <table id="res-config" class="display table table-striped table-hover dt-responsive nowrap" width="100%">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Designation)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Lieu)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Designation)
@@ -36,15 +40,46 @@
                             </td>
                             <td>
                                 &nbsp;&nbsp;&nbsp;
-                                <a class="text-success" asp-action="Edit" asp-route-id="@item.SalleId"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+                                <a class="text-success" asp-action="ModifierUneSalle" asp-route-id="@item.SalleId"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
                                 &nbsp;&nbsp;&nbsp;
                                 <a class="text-primary" onclick=" ViewAjaxCallModal('/Salles/Details/@item.SalleId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
                             </td>
                         </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+</div>
+
+@section Scripts{
+    <script>
+                function notify(message, type) {
+                    $.notify({
+                        message: message
+                    }, {
+                        type: type,
+                        allow_dismiss: false,
+                        label: 'Cancel',
+                        className: 'btn-xs btn-inverse',
+                        placement: {
+                            from: 'top',
+                            align: 'right'
+                        },
+                        delay: 2500,
+                        animate: {
+                            enter: 'animated fadeInRight',
+                            exit: 'animated fadeOutRight'
+                        },
+                        offset: {
+                            x: 30,
+                            y: 30
+                        }
+
+                    });
+                };
+
+
+    </script>
+}

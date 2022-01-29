@@ -2,21 +2,50 @@
 @{
     Layout = null;
 }
-<div class="row">
-    <div class="col-7">
-        <dl class="row">
-            <dt class="col-md-4">
-                @Html.DisplayNameFor(model => model.Intitule)
-            </dt>
-            <dd class="col-md-8">
-                @Html.DisplayFor(model => model.Intitule)
-            </dd>
-            <dt class="col-md-4">
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-            <dd class="col-md-8">
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-        </dl>
-    </div>
-</div>
+
+<dl class="row col-md-12">
+    <dt class="col-xs-4 col-md-4 col-lg-4">
+        @Html.DisplayNameFor(model => model.Intitule)
+    </dt>
+    <dd class="col-xs-8 col-md-8 col-lg-8">
+        @Html.DisplayFor(model => model.Intitule)
+    </dd>
+    <dt class="col-xs-4 col-md-4 col-lg-4">
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd class="col-xs-8 col-md-8 col-lg-8">
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+</dl>
+<hr />
+<dl class="row col-md-12">
+    <dt class="col-md-2">
+        @Html.DisplayNameFor(model => model.DateAjout)
+    </dt>
+    <dd class="col-md-4 text-danger">
+        @Html.DisplayFor(model => model.DateAjout)
+    </dd>
+    <dt class="col-md-2">
+        Par
+    </dt>
+    <dd class="col-md-4">
+        Armelle-Eliane
+    </dd>
+</dl>
+<dl class="row col-md-12">
+    <dt class="col-md-2">
+        @Html.DisplayNameFor(model => model.DateModif)
+    </dt>
+    <dd class="col-md-4 text-success">
+        @Html.DisplayFor(model => model.DateModif)
+    </dd>
+    <dt class="col-md-2">
+        Par
+    </dt>
+    <dd class="col-md-4">
+        Armelle-Eliane
+    </dd>
+
+</dl>
+
+

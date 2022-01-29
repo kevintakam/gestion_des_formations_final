@@ -4,7 +4,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Certifications" asp-action="Create"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une certification</a></button>
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Certifications" asp-action="AjouterUneCertification"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une certification</a></button>
             </div>
             <div class="card-body">
                 <div>
@@ -27,7 +27,7 @@
                                     @Html.DisplayFor(modelItem => item.Organisme.Designation)
                                 </td>
                                 <td class="text-center">
-                                    <a asp-controller="Certifications" asp-action="Edit" asp-route-id="@item.CertificationId" class="text-success"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+                                    <a  asp-action="ModifierUneCertification" asp-route-id="@item.CertificationId" class="text-success"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <a onclick=" ViewAjaxCallModal('/Certifications/Details/@item.CertificationId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"  class="text-primary"><i class="fa fa-eye"></i></a>
                                 </td>

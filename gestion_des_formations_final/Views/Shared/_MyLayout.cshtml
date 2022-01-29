@@ -44,7 +44,7 @@
                             <li><a asp-controller="Sessions" asp-action="AjouterUneSession">Nouvelle session</a></li>
                             <li><a asp-controller="Sessions" asp-action="SessionsEnCours">sessions en cours</a></li>
                             <li><a asp-controller="Sessions" asp-action="Index">sessions planifiées</a></li>
-                            <li><a href="#">sessions terminées</a></li>
+                            <li><a asp-controller="Sessions" asp-action="SessionsTerminees">sessions terminées</a></li>
                         </ul>
                     </li>
                     <li class="nav-item pcoded-menu-caption">
@@ -144,16 +144,17 @@
                             <div class="pro-head">
                                 <img src="~/assets/images/undraw_profile_1.svg" class="img-radius" alt="User-Profile-Image">
                                 <span>Audrey Demgne</span>
-                                <a href="#l" class="dud-logout" title="Deconnexion">
+                                <a asp-controller="Authentifier" asp-action="Index" class="dud-logout" title="Deconnexion">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
                             <ul class="pro-body">
                                 <li><a href="#" class="dropdown-item"><i class="feather icon-user"></i> Mon profil</a></li>
-                                <li><a href="#" class="dropdown-item"><i class="feather icon-lock"></i>Deconnexion</a></li>
+                                <li><a  asp-controller="Authentifier" asp-action="Index" class="dropdown-item"><i class="feather icon-lock"></i>Deconnexion</a></li>
                             </ul>
                         </div>
                     </div>
+
                 </li>
             </ul>
         </div>
@@ -309,10 +310,10 @@
     <!-- Modal pour détails -->
 
     <div id="ViewModal" class="modal fade ">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">@ViewBag.second_title </h4>
+                    <h4 class="modal-title">@ViewBag.first_title  @ViewBag.title_modal </h4>
                     <button type="button" class="close" data-dismiss="modal"> <span aria-hidden="true">×</span> </button>
                 </div>
                 <div class="modal-body" id="ViewModalDiv"></div>
@@ -341,6 +342,8 @@
     <script src="~/assets/js/pages/data-basic-custom.js"></script>
     <script src="~/assets/js/plugins/jquery-ui.min.js"></script>
     <script src="~/assets/js/plugins/jquery.validate.min.js"></script>
+    <!-- notification Js -->
+    <script src="~/assets/js/plugins/bootstrap-notify.min.js"></script>
     <script src="~/assets/js/plugins/PNotify.js"></script>
     <!-- custom-chart js -->
     <script src="~/assets/js/pages/dashboard-main.js"></script>

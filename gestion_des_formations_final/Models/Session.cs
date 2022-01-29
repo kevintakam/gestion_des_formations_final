@@ -11,9 +11,11 @@ namespace gestion_des_formations_final.Models
         public int SessionId { get; set; }  
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Veuillez sélectionner la date de debut de la formation")]
         public DateTime DateDebut { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Veuillez sélectionner la date de fin de la formation")]
         public DateTime DateFin { get; set; }
         public string Statut { get; set; }
         public int Evaluation { get; set; }

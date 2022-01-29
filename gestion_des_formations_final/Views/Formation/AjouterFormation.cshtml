@@ -22,18 +22,18 @@
 
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm-2"><label asp-for="Prix">Prix<span class="text-c-blue">*</span></label></div>
-                                    <div><span>Fcfa</span></div>
+                                    <div class="col-sm-6"><label asp-for="Prix">Prix<span class="text-c-blue">*</span></label></div>
+                                    <div class="col-sm-6 text-right"><span>Fcfa</span></div>
                                 </div>
-                                <input type="text" asp-for="Prix" class="mb-3 form-control form-control-sm only_integer" id="prix" placeholder="Entrer le prix">
+                                <input type="text" asp-for="Prix" class="mb-3 form-control form-control-sm only_integer text-right" id="prix" placeholder="Entrer le prix">
                                 <span asp-validation-for="Prix" class="form-text  text-danger" id="prix-help"></span>
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm-2"><label asp-for="Duree">Duree<span class="text-c-blue">*</span></label></div>
-                                    <div><span>jour(s)</span></div>
+                                    <div class="col-sm-6"><label asp-for="Duree">Duree<span class="text-c-blue">*</span></label></div>
+                                    <div class="col-sm-6 text-right"><span>jour(s)</span></div>
                                 </div>
-                                <input type="text" asp-for="Duree" class="mb-3 form-control form-control-sm" id="duree" placeholder="Entrer la durée">
+                                <input type="text" asp-for="Duree" class="mb-3 form-control form-control-sm text-right" id="duree" placeholder="Entrer la durée">
                                 <span asp-validation-for="Duree" class="form-text text-danger" id="duree-help"></span>
                             </div>
 
@@ -51,8 +51,8 @@
                                 <label asp-for="Description">Description de la formation</label>
                                 <textarea asp-for="Description" class="form-control" id="description" rows="2"></textarea>
                             </div>
-                            <button type="reset" class="btn  btn-danger fa-pull-right" style="margin-left:15px;"><a class="text-white" asp-controller="Formation" asp-action="Index">Annuler</a></button>
-                            <button type="submit" class="btn  btn-primary fa-pull-right">Ajouter</button>
+                            <button type="reset" class="btn  btn-danger fa-pull-left" style="margin-left:15px;"><a class="text-white" asp-controller="Formation" asp-action="Index">Annuler</a></button>
+                            <button type="submit" class="btn  btn-success fa-pull-right">Ajouter</button>
                         </form>
                     </div>
                 </div>

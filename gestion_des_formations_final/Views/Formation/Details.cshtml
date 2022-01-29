@@ -4,38 +4,84 @@
 }
 
 
-    <div >
-        <div>
-            <div>
-                <h5 >@Html.DisplayFor(model => model.Intitule)</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div>
-                <h5>Objectif</h5>
-                <p>
-                    @Html.DisplayFor(model => model.Description)
-                </p>
-                <hr />
-                <span style="margin-right: 80px; font-weight: bold; font-size: 16px;"> @Html.DisplayNameFor(model => model.Prix): <i class="text-danger">@Html.DisplayFor(model => model.Prix)</i></span>
-                <span style="font-weight: bold; font-size: 16px;"> @Html.DisplayNameFor(model => model.Duree): <i class="text-danger">@Html.DisplayFor(model => model.Duree) jour(s)</i></span><br />
-                <span style="font-weight: bold;font-size:16px;">
-                    @Html.DisplayNameFor(model => model.FormationCertifiee):
-                    @if (Model.FormationCertifiee == true)
-                    {
-                        <i class="text-danger">
-                            Oui
-                        </i>
-                    }
-                    else
-                    {
-                        <i class="text-danger">
-                            Non
-                        </i>
-                    }
-                   
-                </span>
-        </div>
-    </div>
+<dl class="row col-md-12">
+    <dt class="col-xs-4 col-md-4 col-lg-4">
+        @Html.DisplayNameFor(model => model.Intitule):
+    </dt>
+    <dd class="col-xs-8 col-md-8 col-lg-8">
+        @Html.DisplayFor(model => model.Intitule)
+    </dd>
+    <dt class="col-xs-4 col-md-4 col-lg-4">
+        @Html.DisplayNameFor(model => model.Prix)
+    </dt>
+    <dd class="col-xs-8 col-md-8 col-lg-8">
+        @Html.DisplayFor(model => model.Prix) FCFA
+    </dd>
+    <dt class="col-xs-4 col-md-4 col-lg-4">
+        @Html.DisplayNameFor(model => model.Duree)
+    </dt>
+    <dd class="col-xs-8 col-md-8 col-lg-8">
+        @Html.DisplayFor(model => model.Duree)Jour(s)
+    </dd>
+    <dt class="col-xs-4 col-md-4 col-lg-4">
+        @Html.DisplayNameFor(model => model.FormationCertifiee)
+    </dt>
+    <dd class="col-xs-8 col-md-8 col-lg-8">
+        @if (Model.FormationCertifiee == true)
+        {
+            <i class="text-danger">
+                Oui
+            </i>
+        }
+        else
+        {
+            <i class="text-danger">
+                Non
+            </i>
+        }
+    </dd>
+</dl>
+<hr />
+<dl class="row col-md-12">
+    <dt class="col-xs-1 col-md-1 col-lg-1">
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <p>
+        @Html.DisplayFor(model => model.Description)
+    </p>
+</dl>
+
+<hr />
+<dl class="row col-md-12">
+    <dt class="col-md-2">
+        @Html.DisplayNameFor(model => model.DateAjout)
+    </dt>
+    <dd class="col-md-4 text-danger">
+        @Html.DisplayFor(model => model.DateAjout)
+    </dd>
+    <dt class="col-md-2">
+        Par
+    </dt>
+    <dd class="col-md-4">
+        Armelle-Eliane
+    </dd>
+</dl>
+<dl class="row col-md-12">
+    <dt class="col-md-2">
+        @Html.DisplayNameFor(model => model.DateModif)
+    </dt>
+    <dd class="col-md-4 text-success">
+        @Html.DisplayFor(model => model.DateModif)
+    </dd>
+    <dt class="col-md-2">
+        Par
+    </dt>
+    <dd class="col-md-4">
+        Armelle-Eliane
+    </dd>
+
+</dl>
+
 
 
 

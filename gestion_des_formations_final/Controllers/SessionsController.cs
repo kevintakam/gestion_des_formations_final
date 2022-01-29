@@ -25,12 +25,25 @@ namespace gestion_des_formations_final.Controllers
             var applicationDbContext = _context.Session.Include(s => s.Formation).Include(s => s.Salle);
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Sessions";
+            ViewData["first_title"] = "Session";
+            ViewData["title_modal"] = "détaillée";
             return View(await applicationDbContext.ToListAsync());
         }
         public async Task<IActionResult> SessionsEnCours()
         {
             var applicationDbContext = _context.Session.Include(s => s.Formation).Include(s => s.Salle);
             ViewData["Title"] = "Gestion des formations";
+            ViewData["title_modal"] = "détaillée";
+            ViewData["first_title"] = "Session";
+            ViewData["second_title"] = "Sessions";
+            return View(await applicationDbContext.ToListAsync());
+        }
+        public async Task<IActionResult> SessionsTerminees()
+        {
+            var applicationDbContext = _context.Session.Include(s => s.Formation).Include(s => s.Salle);
+            ViewData["Title"] = "Gestion des formations";
+            ViewData["title_modal"] = "détaillée";
+            ViewData["first_title"] = "Session";
             ViewData["second_title"] = "Sessions";
             return View(await applicationDbContext.ToListAsync());
         }
@@ -61,27 +74,76 @@ namespace gestion_des_formations_final.Controllers
             #region recupérer les formateurs
             var formateur = _context.FormateurSessions.Include(i => i.Formateur).Where(s => s.SessionId == id).ToList();
             sessionvm.FormateurId = formateur[0].FormateurId;
-            #endregion
-            //les particîpants
-            var parti = _context.ParticipantSessions.Include(i => i.Participant).Where(s => s.SessionId == id).ToList();
-            
-            foreach (var item in parti)
-            {
-                sessionvm.ParticipantSessions.Add(item);
-            }
             foreach (var item in formateur)
             {
                 sessionvm.FormateurSessions.Add(item);
             }
+            #endregion
+            //les particîpants
+            #region Recupérer les participants
+            var parti = _context.ParticipantSessions.Include(i => i.Participant).Where(s => s.SessionId == id).ToList();
+
+            foreach (var item in parti)
+            {
+                sessionvm.ParticipantSessions.Add(item);
+            }
+            #endregion
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Sessions";
             ViewData["FormateurId"] = _context.FormateurSessions.Include(i => i.Formateur).Where(i => i.FormateurId == sessionvm.FormateurId).FirstOrDefault();
             ViewData["session"] = _context.Session.Include(i => i.Formation).Where(i => i.FormationId == sessionvm.FormationId).FirstOrDefault();
-            ViewData["participants"]= _context.ParticipantSessions.Include(i => i.Participant).Where(s => s.SessionId == id).Count();
+            ViewData["participants"] = _context.ParticipantSessions.Include(i => i.Participant).Where(s => s.SessionId == id).Count();
+            ViewData["listes"] = _context.ParticipantSessions.Include(i => i.Participant).Where(s => s.SessionId == id).ToList();
             ViewData["SalleId"] = _context.Session.Include(i => i.Salle).Where(i => i.SalleId == sessionvm.SalleId).FirstOrDefault();
             return View(sessionvm);
         }
-
+        //GET: Sessions/details/documents
+        public async Task<IActionResult> DetailsDocs(int? id)
+        {
+            
+            DocumentsVm documentvm = new DocumentsVm();
+            var document =  _context.Document.Include(t => t.Session).Where(s => s.SessionId == id).ToList();
+            foreach(var i in document)
+            {
+                documentvm.TypeDocumentId = i.TypeDocumentId;
+                ViewData["Docs"] =await  _context.TypeDocument.Where(t => t.TypeDocumentId == documentvm.TypeDocumentId).ToListAsync();
+            }
+            
+            if (id == null)
+            {
+                return NotFound();
+            }
+            ViewData["Title"] = "Gestion des formations";
+            ViewData["second_title"] = "Document";
+            ViewData["first_title"] = "Document";
+            ViewData["title_modal"] = "détaillé";
+            ViewData["formations"] = _context.Session.Include(i => i.Formation).Where(s => s.SessionId == id).FirstOrDefault();
+            ViewData["Documents"] = _context.Document.Include(i => i.Session).Where(s => s.SessionId == id).ToList();
+            return View();
+        }
+        //GET:Documents/details
+        public async Task<IActionResult> DetailsDoc(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            //  var document = _context.Document.Include(d => d.Session).ThenInclude(e => e.Formation).Include(d => d.TypeDocument).FirstOrDefaultAsync();
+            var document = await _context.Document
+                .Include(d => d.Session)
+                .ThenInclude(f => f.Formation)
+                .Include(d => d.TypeDocument)
+                .FirstOrDefaultAsync(m => m.DocumentId == id);
+            if (document == null)
+            {
+                return NotFound();
+            }
+            ViewData["Title"] = "Gestion des formations";
+            ViewData["second_title"] = "Documents";
+            ViewData["first_title"] = "Document";
+            ViewData["title_modal"] = "détaillé";
+            return View(document);
+        }
         // GET: Sessions/Create
         public IActionResult Create()
         {
@@ -132,106 +194,118 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AjouterUneSession(SessionsVm allsession)
+        public async Task<IActionResult> AjouterUneSession(SessionsVm allsessions)
         {
 
-            try {
-                #region ajout de la session
-                Session session = new Session()
+           // if (ModelState.IsValid)
+           // {
+                try
                 {
-                    DateDebut = allsession.DateDebut,
-                    DateFin = allsession.DateFin,
-                    FormationId = allsession.FormationId,
-                    Statut = allsession.Statut,
-                    SalleId = allsession.SalleId,
-                    DateAjout = DateTime.Now,
-                    DateModif = DateTime.Now
-
-                };
-                _context.Session.Add(session);
-                _context.SaveChanges();
-                #endregion
-
-                #region ajout des participants
-                #region ajout du formateur
-                FormateurSession formateursession = new FormateurSession()
-                {
-                    FormateurId = allsession.FormateurId,
-                    SessionId = session.SessionId
-                };
-                _context.FormateurSessions.Add(formateursession);
-                _context.SaveChanges();
-                #endregion
-                /*
-                Participant participant = new Participant()
-                {
-                    Nom = allsession.Nom,
-                    Prenom = allsession.Prenom,
-                    Email = allsession.Email,
-                    Telephone = allsession.Telephone,
-                    Adresse = allsession.Adresse,
-                    Statut = allsession.StatutP
-                };
-                _context.Participant.Add(participant);
-
-                */
-                var participants = new List<Participant>();
-                foreach (var item in allsession.ParticipantSessions)
-                {
-                    if (item.Participant.Nom != null)
+  
+                    #region ajout de la session
+                    Session session = new Session()
                     {
-                        participants.Add(item.Participant);
-                    }
+                        DateDebut = allsessions.DateDebut,
+                        DateFin = allsessions.DateFin,
+                        FormationId = allsessions.FormationId,
+                        Statut = allsessions.Statut,
+                        SalleId = allsessions.SalleId,
+                        DateAjout = DateTime.Now,
+                        DateModif = DateTime.Now
 
-
-                }
-
-                if (participants.Count != 0) {
-
-                    _context.Participant.AddRange(participants);
+                    };
+                    _context.Session.Add(session);
                     _context.SaveChanges();
+                    #endregion
+                    #region ajout du formateur
+                    FormateurSession formateursession = new FormateurSession()
+                    {
+                        FormateurId = allsessions.FormateurId,
+                        SessionId = session.SessionId
+                    };
+                    _context.FormateurSessions.Add(formateursession);
+                    _context.SaveChanges();
+                    #endregion
+                
+                    /*
+                    Participant participant = new Participant()
+                    {
+                        Nom = allsession.Nom,
+                        Prenom = allsession.Prenom,
+                        Email = allsession.Email,
+                        Telephone = allsession.Telephone,
+                        Adresse = allsession.Adresse,
+                        Statut = allsession.StatutP
+                    };
+                    _context.Participant.Add(participant);
 
-                    foreach (var item in allsession.ParticipantSessions)
+                    */
+                    #region ajout des participants
+                    var participants = new List<Participant>();
+                    foreach (var item in allsessions.ParticipantSessions)
                     {
                         if (item.Participant.Nom != null)
                         {
-                            _context.ParticipantSessions.Add(new ParticipantSession
-                            {
-                                SessionId = session.SessionId,
-                                ParticipantId = item.Participant.ParticipantId
-                            });
+                            participants.Add(item.Participant);
                         }
 
+
                     }
-                    _context.SaveChanges();
+
+                    if (participants.Count != 0)
+                    {
+
+                        _context.Participant.AddRange(participants);
+                        _context.SaveChanges();
+
+                        foreach (var item in allsessions.ParticipantSessions)
+                        {
+                            if (item.Participant.Nom != null)
+                            {
+                                _context.ParticipantSessions.Add(new ParticipantSession
+                                {
+                                    SessionId = session.SessionId,
+                                    ParticipantId = item.Participant.ParticipantId
+                                });
+                            }
+
+                        }
+                        _context.SaveChanges();
+
+                    }
+                    #endregion
+
+                    /////////////////////////
+                    await _context.SaveChangesAsync();
+                    if (session.Statut == "en cours")
+                    {
+                        return RedirectToAction(nameof(SessionsEnCours));
+                    }
+                    else
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+
 
                 }
-                #endregion
-
-                /////////////////////////
-                await _context.SaveChangesAsync();
-                if (session.Statut == "en cours")
+                catch
                 {
-                    return RedirectToAction(nameof(SessionsEnCours));
-                }
-                else
-                {
-                    return RedirectToAction(nameof(Index));
+                    ViewData["Title"] = "Gestion des formations";
+                    ViewData["second_title"] = "Sessions";
+                    ViewData["FormationId"] = new SelectList(_context.Formation, "FormationId", "Intitule");
+                    ViewData["SalleId"] = new SelectList(_context.Salle, "SalleId", "Designation");
+                    ViewData["FormateurId"] = new SelectList(_context.FormateurP, "FormateurId", "Nom");
+                    return View(allsessions);
                 }
 
-            
-            }
-            catch 
-                {
-                ViewData["Title"] = "Gestion des formations";
-                ViewData["second_title"] = "Sessions";
-                ViewData["FormationId"] = new SelectList(_context.Formation, "FormationId", "Intitule");
-                ViewData["SalleId"] = new SelectList(_context.Salle, "SalleId", "Designation");
-                ViewData["FormateurId"] = new SelectList(_context.FormateurP, "FormateurId", "Nom");
-                return View(allsession);
-            }
-           
 
+          //  }
+            /* ViewData["Title"] = "Gestion des formations";
+              ViewData["second_title"] = "Sessions";
+              ViewData["FormationId"] = new SelectList(_context.Formation, "FormationId", "Intitule");
+              ViewData["SalleId"] = new SelectList(_context.Salle, "SalleId", "Designation");
+              ViewData["FormateurId"] = new SelectList(_context.FormateurP, "FormateurId", "Nom");
+              return View(allsessions);*/
         }
 
         // GET: Sessions/Edit/5
@@ -266,20 +340,20 @@ namespace gestion_des_formations_final.Controllers
             var nbr = _context.ParticipantSessions.Include(i => i.Participant).Where(s => s.ParticipantId != 0).Count();
             foreach (var item in parti)
             {
-                
-                    if (item.Participant.Nom != null)
-                    {
-                        sessionvm.ParticipantSessions.Add(item);
-                    }
-                    else
-                    {
+
+                if (item.Participant.Nom != null)
+                {
+                    sessionvm.ParticipantSessions.Add(item);
+                }
+                else
+                {
                     for (int i = 0; i <= 9 - nbr; i++)
                     {
                         sessionvm.ParticipantSessions.Add(new ParticipantSession());
                     };
-                    }
+                }
 
-               
+
             }
             foreach (var item in formateur)
             {
@@ -291,9 +365,9 @@ namespace gestion_des_formations_final.Controllers
             ViewData["FormateurId"] = new SelectList(_context.FormateurP, "FormateurId", "Nom", sessionvm.FormateurId);
             ViewData["FormationId"] = new SelectList(_context.Formation, "FormationId", "Intitule", sessionvm.FormationId);
             ViewData["SalleId"] = new SelectList(_context.Salle, "SalleId", "Designation", sessionvm.SalleId);
-           
-           // SessionsVm allsessions = new SessionsVm();
-           // for (int i = 0; i <= 9 - nbr; i++) sessionvm.ParticipantSessions.Add(new ParticipantSession());
+
+            // SessionsVm allsessions = new SessionsVm();
+             for (int i = 0; i <= 9 - nbr; i++) sessionvm.ParticipantSessions.Add(new ParticipantSession());
             return View(sessionvm);
         }
 
@@ -302,15 +376,15 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ModifierUneSession(int id,  SessionsVm sessionvm)
+        public async Task<IActionResult> ModifierUneSession(int id, SessionsVm sessionvm)
         {
             if (id != sessionvm.SessionId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+          //  if (ModelState.IsValid)
+           // {
                 try
                 {
                     var session = await _context.Session.FindAsync(id);
@@ -332,7 +406,7 @@ namespace gestion_des_formations_final.Controllers
                     };
                     _context.FormateurSessions.Add(nouveau_formateurs_session);
 
-                    var parti = await  _context.ParticipantSessions.Include(i => i.Participant).Where(w => w.SessionId == id).ToListAsync();
+                    var parti = await _context.ParticipantSessions.Include(i => i.Participant).Where(w => w.SessionId == id).ToListAsync();
                     var participants = new List<Participant>();
                     foreach (var item in parti)
                     {
@@ -343,33 +417,42 @@ namespace gestion_des_formations_final.Controllers
                     _context.Participant.RemoveRange(participants);
                     _context.SaveChanges();
 
-                    if (participants.Count != 0)
+                    if (sessionvm.ParticipantSessions.Count != 0)
                     {
                         var participantsNew = new List<Participant>();
 
                         foreach (var item in sessionvm.ParticipantSessions)
                         {
                             //item.ParticipantId = '\0';
+                            if (!string.IsNullOrEmpty(item.Participant.Nom)) participantsNew.Add(item.Participant);
 
-                                participantsNew.Add(item.Participant);
-                            
                         }
-                        _context.Participant.AddRange(participantsNew);
-                        _context.SaveChanges();
-
-                        foreach (var item in sessionvm.ParticipantSessions)
+                        if (participantsNew.Count != 0)
                         {
+                            _context.Participant.AddRange(participantsNew);
+                            _context.SaveChanges();
 
+
+
+                            foreach (var item in sessionvm.ParticipantSessions)
+                            {
+
+
+                            if (!string.IsNullOrEmpty(item.Participant.Nom))
+                            {
                                 _context.ParticipantSessions.Add(new ParticipantSession
                                 {
                                     SessionId = session.SessionId,
                                     ParticipantId = item.Participant.ParticipantId
                                 });
-                            
+                            }
+
+                        
+
+                            }
+
+                            _context.SaveChanges();
                         }
-
-                        _context.SaveChanges();
-
                     }
                     /////////////////////////
                     await _context.SaveChangesAsync();
@@ -394,7 +477,7 @@ namespace gestion_des_formations_final.Controllers
                     }
                 }
 
-            }
+            //}
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Sessions";
             ViewData["FormateurId"] = new SelectList(_context.FormateurP, "FormateurId", "Intitule", sessionvm.FormateurId);
@@ -404,7 +487,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: Sessions/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+     /*   public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -421,7 +504,7 @@ namespace gestion_des_formations_final.Controllers
             }
 
             return View(session);
-        }
+        }*/
 
         // POST: Sessions/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -437,6 +520,23 @@ namespace gestion_des_formations_final.Controllers
         private bool SessionExists(int id)
         {
             return _context.Session.Any(e => e.SessionId == id);
+        }
+        public async Task<IActionResult> DeleteAsync(int? id)
+        {
+
+            var session = await _context.Session.FindAsync(id);
+            session.Statut = "terminé";
+            _context.Session.Update(session);
+           await _context.SaveChangesAsync();
+            var formateurs_session = await _context.FormateurSessions.Where(t => t.SessionId == id).ToListAsync();
+            _context.FormateurSessions.UpdateRange(formateurs_session);
+            var parti = await _context.ParticipantSessions.Include(i => i.Participant).Where(w => w.SessionId == id).ToListAsync();
+            _context.ParticipantSessions.UpdateRange(parti);
+          await  _context.SaveChangesAsync();
+            // _context.Formation.Remove(formation);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("SessionsTerminees");
+
         }
     }
 }

@@ -9,7 +9,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Entreprises" asp-action="Create"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une entreprise</a></button>
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Entreprises" asp-action="AjouterUneEntreprise"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une entreprise</a></button>
             </div>
             <div class="card-body">
                 <table id="res-config" class="display table table-striped table-hover dt-responsive nowrap" style="width:100%">
@@ -59,7 +59,7 @@
                                 @item.Email
                             </td>
                             <td>
-                                <a class="text-success" asp-action="Edit" asp-route-id="@item.EntrepriseId"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+                                <a class="text-success" asp-action="ModifierUneEntreprise" asp-route-id="@item.EntrepriseId"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
                                 &nbsp;&nbsp;&nbsp;
                                 <a class="text-primary" onclick=" ViewAjaxCallModal('/Entreprises/Details/@item.EntrepriseId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
                             </td>

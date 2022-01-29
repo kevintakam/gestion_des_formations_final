@@ -24,6 +24,8 @@ namespace gestion_des_formations_final.Controllers
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Entreprises";
+            ViewData["first_title"] = "Entreprise";
+            ViewData["title_modal"] = "détaillée";
             return View(await _context.Entreprise.ToListAsync());
         }
 
@@ -48,7 +50,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: Entreprises/Create
-        public IActionResult Create()
+        public IActionResult AjouterUneEntreprise()
         {
             return View();
         }
@@ -58,7 +60,7 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EntrepriseId,Designation,SecteurActivité,PersonneResponsable,Metier,Siteweb,Telephone,Email,Boitepostale")] Entreprise entreprise)
+        public async Task<IActionResult> AjouterUneEntreprise([Bind("EntrepriseId,Designation,SecteurActivité,PersonneResponsable,Metier,Siteweb,Telephone,Email,Boitepostale")] Entreprise entreprise)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Entreprise";
@@ -66,7 +68,7 @@ namespace gestion_des_formations_final.Controllers
             {
                 if (EntrepriseExist(entreprise.Designation))
                 {
-                    ViewData["message"] = "cette entreprise existe déjà !";
+                    ViewData["message"] = "L'entreprise " + entreprise.Designation + " a déjà été enregistrée !";
                     return View(entreprise);
                 }
                 else
@@ -82,7 +84,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: Entreprises/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> ModifierUneEntreprise(int? id)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Entreprises";
@@ -104,7 +106,7 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EntrepriseId,Designation,SecteurActivité,PersonneResponsable,Metier,Siteweb,Telephone,Email,Boitepostale")] Entreprise entreprise)
+        public async Task<IActionResult> ModifierUneEntreprise(int id, [Bind("EntrepriseId,Designation,SecteurActivité,PersonneResponsable,Metier,Siteweb,Telephone,Email,Boitepostale")] Entreprise entreprise)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Entreprises";

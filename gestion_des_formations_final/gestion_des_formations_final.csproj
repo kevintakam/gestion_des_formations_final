@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Views\Certifications\Create.cshtml" />
+    <None Include="Views\Certifications\AjouterUneCertification.cshtml" />
     <None Include="Views\Certifications\Delete.cshtml" />
     <None Include="Views\Certifications\Details.cshtml" />
-    <None Include="Views\Certifications\Edit.cshtml" />
+    <None Include="Views\Certifications\ModifierUneCertification.cshtml" />
     <None Include="Views\Certifications\Index.cshtml" />
     <None Include="Views\Documents\Create.cshtml" />
     <None Include="Views\Documents\Delete.cshtml" />
@@ -17,9 +17,9 @@
     <None Include="Views\Documents\Edit.cshtml" />
     <None Include="Views\Documents\ImporterDocument.cshtml" />
     <None Include="Views\Documents\Index.cshtml" />
-    <None Include="Views\Entreprises\Create.cshtml" />
+    <None Include="Views\Entreprises\AjouterUneEntreprise.cshtml" />
     <None Include="Views\Entreprises\Details.cshtml" />
-    <None Include="Views\Entreprises\Edit.cshtml" />
+    <None Include="Views\Entreprises\ModifierUneEntreprise.cshtml" />
     <None Include="Views\Entreprises\Index.cshtml" />
     <None Include="Views\FormateurTemporaire\Create.cshtml" />
     <None Include="Views\FormateurTemporaire\Delete.cshtml" />
@@ -36,20 +36,20 @@
     <None Include="Views\Formation\Mesformations.cshtml" />
     <None Include="Views\Formation\ModifierFormation.cshtml" />
     <None Include="Views\Formation\_Modaldetails.cshtml" />
-    <None Include="Views\Organismes\Create.cshtml" />
+    <None Include="Views\Organismes\AjouterUnOrganisme.cshtml" />
     <None Include="Views\Organismes\Delete.cshtml" />
     <None Include="Views\Organismes\Details.cshtml" />
-    <None Include="Views\Organismes\Edit.cshtml" />
+    <None Include="Views\Organismes\ModifierUnOrganisme.cshtml" />
     <None Include="Views\Organismes\Index.cshtml" />
-    <None Include="Views\Salles\Create.cshtml" />
+    <None Include="Views\Salles\AjouterUneSalle.cshtml" />
     <None Include="Views\Salles\Details.cshtml" />
-    <None Include="Views\Salles\Edit.cshtml" />
+    <None Include="Views\Salles\ModifierUneSalle.cshtml" />
     <None Include="Views\Salles\Index.cshtml" />
-    <None Include="Views\TypeDocuments\Create.cshtml" />
+    <None Include="Views\TypeDocuments\AjouterUnTypeDocument.cshtml" />
     <None Include="Views\TypeDocuments\Delete.cshtml" />
     <None Include="Views\TypeDocuments\Details.cshtml" />
-    <None Include="Views\TypeDocuments\Edit.cshtml" />
-    <None Include="Views\TypeDocuments\Home.cshtml" />
+    <None Include="Views\TypeDocuments\ModifierUnTypeDocument.cshtml" />
+    <None Include="Views\TypeDocuments\ChoixModeleDocument.cshtml" />
     <None Include="Views\TypeDocuments\Index.cshtml" />
   </ItemGroup>
 

@@ -18,7 +18,6 @@ namespace gestion_des_formations_final.Models
         [Required(ErrorMessage = "Renseigner la duree de la formation")]
         public int Duree { get; set; }
 
-        [Display(Name = "Objectif de la formation")]
         public string Description { get; set; }
         [Display(Name = "Formation certifiee ")]
         public bool FormationCertifiee { get; set; }

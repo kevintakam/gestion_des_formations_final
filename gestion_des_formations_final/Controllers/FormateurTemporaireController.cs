@@ -29,7 +29,9 @@ namespace gestion_des_formations_final.Controllers
         {
             List<FormateurTemporaire> Formateur = _context.FormateurT.ToList();
             ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Nos Formateurs";
+            ViewData["second_title"] = "Formateurs";
+            ViewData["first_title"] = "Formateur";
+            ViewData["title_modal"] = "détaillé";
             return View(Formateur);
         }
         public IActionResult Details(int Id)
@@ -58,6 +60,7 @@ namespace gestion_des_formations_final.Controllers
             _context.Entry(formateur).State = EntityState.Modified;
      
                 FormateurTemporaire f = _context.FormateurT.FirstOrDefault(e => e.FormateurTemporaireId == formateur.FormateurTemporaireId);
+            if (f.Statut == "approuvé") { 
                 Formateur form = new Formateur()
                 {
 
@@ -67,6 +70,7 @@ namespace gestion_des_formations_final.Controllers
                     Adresse = f.Adresse,
                     NbreAnneeExperience = f.NbreAnneeExperience,
                     Telephone = f.Telephone,
+                    Cv=f.Cv,
                     Type = f.Type,
                     NiveauAcademique = f.NiveauAcademique,
                     Certifications = f.Certifications,
@@ -74,9 +78,18 @@ namespace gestion_des_formations_final.Controllers
                     Statut = f.Statut
 
                 };
+                  f.Statut = "approuvé";
+                 _context.FormateurT.Update(f);
                 _context.FormateurP.Update(form);
             
             _context.SaveChanges();
+            }
+            else
+            {
+                _context.FormateurT.Update(f);
+                _context.SaveChanges();
+
+            }
             return RedirectToAction("Index");
 
         }
@@ -84,7 +97,7 @@ namespace gestion_des_formations_final.Controllers
         public async Task<IActionResult> DeleteAsync(int? id)
         {
             ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Formateurs >  modifier Formateur";
+            ViewData["second_title"] = "Formateurs";
             var formateur = await _context.FormateurT.FindAsync(id);
             _context.FormateurT.Remove(formateur);
             await _context.SaveChangesAsync();
@@ -96,7 +109,7 @@ namespace gestion_des_formations_final.Controllers
         {
             FormateurTemporaire formateur = new FormateurTemporaire();
             ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Formateurs >  Nouveau Formateur ";
+            ViewData["second_title"] = "Formateurs";
 
             return View(formateur);
         }
@@ -107,48 +120,83 @@ namespace gestion_des_formations_final.Controllers
         {
             try
             {
-                if (FormateurExist(formateurVm.Nom, formateurVm.Prenom))
+                if (FormateurExist(formateurVm.Email))
                 {
-                    ViewData["message"] = "ce formateur a  déjà  été enregistré !";
+                    ViewData["message"] = "Le formateur " + formateurVm.Nom + " a déjà été enregistrée !";
                     return View();
                 }
                 else
                 {
                     if (formateurVm.Prenom == null)
                     {
-                        formateurVm.Prenom = "";
+                        formateurVm.Prenom = "...";
                     }
-                    FormateurTemporaire formateurT = new FormateurTemporaire()
-                    {
 
-                        Nom = formateurVm.Nom,
-                        Prenom = formateurVm.Prenom,
-                        Email = formateurVm.Email,
-                        Adresse = formateurVm.Adresse,
-                        NbreAnneeExperience = formateurVm.NbreAnneeExperience,
-                        Telephone = formateurVm.Telephone,
-                        Statut = formateurVm.Statut,
-                        Type = formateurVm.Type,
-                        NiveauAcademique = formateurVm.NiveauAcademique,
-                        Certifications = formateurVm.Certifications,
-                        Specialités = formateurVm.Specialités,
-                        DateAjout = DateTime.Now,
-                        DateModif = DateTime.Now
+                        if (formateurVm.Statut == "approuvé")
+                        {
+                            Formateur formateurP = new Formateur()
+                            {
 
-                    };
-                    if (formateurVm.Cv != null)
-                    {
-                        formateurT.Cv = FileUpload(formateurVm.Cv, formateurT.Nom, formateurT.Prenom);
-                        _context.FormateurT.Add(formateurT);
-                        _context.SaveChanges();
+                                Nom = formateurVm.Nom,
+                                Prenom = formateurVm.Prenom,
+                                Email = formateurVm.Email,
+                                Adresse = formateurVm.Adresse,
+                                NbreAnneeExperience = formateurVm.NbreAnneeExperience,
+                                Telephone = formateurVm.Telephone,
+                                Statut = formateurVm.Statut,
+                                Type = formateurVm.Type,
+                                NiveauAcademique = formateurVm.NiveauAcademique,
+                                Certifications = formateurVm.Certifications,
+                                Specialités = formateurVm.Specialités,
+                                DateAjout = DateTime.Now,
+                                DateModif = DateTime.Now
+
+                            };
+                            if (formateurVm.Cv != null)
+                            {
+                                formateurP.Cv = FileUpload(formateurVm.Cv, formateurP.Nom, formateurP.Prenom);
+                                _context.FormateurP.Add(formateurP);
+                                _context.SaveChanges();
+                            }
+                            return RedirectToAction("Index");
+
+                        }
+                        else
+                        {
+                            FormateurTemporaire formateurT = new FormateurTemporaire()
+                            {
+
+                                Nom = formateurVm.Nom,
+                                Prenom = formateurVm.Prenom,
+                                Email = formateurVm.Email,
+                                Adresse = formateurVm.Adresse,
+                                NbreAnneeExperience = formateurVm.NbreAnneeExperience,
+                                Telephone = formateurVm.Telephone,
+                                Statut = formateurVm.Statut,
+                                Type = formateurVm.Type,
+                                NiveauAcademique = formateurVm.NiveauAcademique,
+                                Certifications = formateurVm.Certifications,
+                                Specialités = formateurVm.Specialités,
+                                DateAjout = DateTime.Now,
+                                DateModif = DateTime.Now
+
+                            };
+                            if (formateurVm.Cv != null)
+                            {
+                                formateurT.Cv = FileUpload(formateurVm.Cv, formateurT.Nom, formateurT.Prenom);
+                                _context.FormateurT.Add(formateurT);
+                                _context.SaveChanges();
+                            }
+                            return RedirectToAction("Index");
+                        }
                     }
-                    return RedirectToAction("Index");
                 }
-            }
+            
             catch (Exception)
             {
                 return View();
             }
+
         }
 
         public string FileUpload(IFormFile file, string nom, string prenom)
@@ -169,9 +217,9 @@ namespace gestion_des_formations_final.Controllers
 
             return "";
         }
-        private bool FormateurExist(string nom, string prenom)
+        private bool FormateurExist(string email)
         {
-            return _context.FormateurT.Any(e => e.Nom == nom && e.Prenom == prenom);
+            return _context.FormateurT.Any(e => e.Email == email);
         }
     }
 

@@ -1,35 +1,72 @@
 ﻿@model IEnumerable<gestion_des_formations_final.Models.Session>
-
-@{
-    ViewData["Title"] = "Index";
-}
-
 <div class="row col-md-12">
     <div>
-            <button type="button" style="margin-bottom:20px;" class="btn  btn-primary"><a class="text-white" asp-controller="Sessions" asp-action="AjouterUneSession"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une Nouvelle session</a></button>
-            <div class="row">
-                @foreach (var item in Model)
+        <button type="button" style="margin-bottom:20px;" class="btn  btn-primary"><a class="text-white" asp-controller="Sessions" asp-action="AjouterUneSession"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter une Nouvelle session</a></button>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                @if (item.Statut == "en cours")
                 {
-                    @if (item.Statut == "en cours")
-                    {
-                        <div class="col-sm-12">
-                            <div class="card-body" style="background-color:white;margin-bottom:30px;">
+                    <div class="col-sm-12">
+                        <div class="card-body" style="background-color:white;margin-bottom:30px;">
 
-                                <span class="card-title text-success" style="font-size:22px;font-weight:bold;"> @Html.DisplayFor(modelItem => item.Formation.Intitule)</span> <br />
-                                <span style="font-size:12px;font-weight:bold"> Date debut :</span> <span class="card-subtitle mb-2 text-muted" style="font-size:12px;font-style:italic;"> @Html.DisplayFor(modelItem => item.DateDebut) ->  <span style="font-size:12px;font-weight:bold"> Date fin :</span> @Html.DisplayFor(modelItem => item.DateFin)</span><br />
-                                <span style="font-size:12px;font-weight:bold"> Salle :</span> <span class="card-subtitle mb-2 text-muted text-primary">@Html.DisplayFor(modelItem => item.Salle.Designation)</span><br />
-                                <div class="fa-pull-right">
-                                    <a asp-action="ModifierUneSession" asp-route-Id="@item.SessionId"><i class="icon feather icon-edit f-16 text-c-green"></i></a>&nbsp;&nbsp;&nbsp;
-                                    <a class="text-primary" onclick=" ViewAjaxCallModal('/Sessions/Details/@item.SessionId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
-                                    &nbsp;&nbsp;&nbsp <a asp-action="#" asp-route-Id="@item.SessionId"><i class="fa fa-archive  text-c-red"></i></a>
-                                </div>
+                            <span class="card-title text-success" style="font-size:22px;font-weight:bold;"> @Html.DisplayFor(modelItem => item.Formation.Intitule)</span> <br />
+                            <span style="font-size:12px;font-weight:bold"> Date debut :</span> <span class="card-subtitle mb-2 text-muted" style="font-size:12px;font-style:italic;"> @Html.DisplayFor(modelItem => item.DateDebut) ->  <span style="font-size:12px;font-weight:bold"> Date fin :</span> @Html.DisplayFor(modelItem => item.DateFin)</span><br />
+                            <span style="font-size:12px;font-weight:bold"> Salle :</span> <span class="card-subtitle mb-2 text-muted text-primary">@Html.DisplayFor(modelItem => item.Salle.Designation)</span><br />
+                            <div class="fa-pull-right">
+                                <a asp-action="ModifierUneSession" asp-route-Id="@item.SessionId"><i class="icon feather icon-edit f-16 text-c-green"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a class="text-primary" onclick=" ViewAjaxCallModal('/Sessions/Details/@item.SessionId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
+                                &nbsp;&nbsp; <a onclick="Delete(@item.SessionId)"><i class="fa fa-archive text-c-red"></i></a>
                             </div>
                         </div>
-                    }
-
+                    </div>
                 }
 
-            </div>
+            }
+
+        </div>
     </div>
 </div>
+@section Scripts {
 
+    <script>
+        function Delete(id) {
+            sweetAlert
+                ({
+                    title: "êtes vous sûre",
+                    text: "de vouloir clôturer cette session ?",
+                    type: "Warning",
+                    dangerMode: true,
+                    buttons: ["Annuler", "Clôturer"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: "Delete/",
+                            data:
+                            {
+                                id: id
+                            },
+                            type: "GET",
+                            success: function (data) {
+                                console.log(data);
+
+                                sweetAlert(
+                                    'Deleted',
+                                    'la clôture de cette session  a bien été éffectuée',
+                                    'success'
+                                ).then(function () {
+                                    window.location.href = "../Sessions/SessionsTerminees";
+                                })
+
+                            }
+                        });
+                    } else {
+                        swal("Oops!!!!", "annulation de la clôture", "error");
+
+                    }
+
+                });
+        }
+
+    </script>
+}

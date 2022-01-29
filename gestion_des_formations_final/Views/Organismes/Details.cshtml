@@ -3,69 +3,66 @@
     Layout = null;
 }
 
-<div class="row">
-    <div class="col-7">
-        <dl class="row">
-            <dt class="col-md-4">
-                @Html.DisplayNameFor(model => model.Designation)
-            </dt>
-            <dd class="col-md-8">
-                @Html.DisplayFor(model => model.Designation)
-            </dd>
+<dl class="row">
+    <dt class="col-xs-4 col-md-4 col-lg-4">
+        @Html.DisplayNameFor(model => model.Designation)
+    </dt>
+    <dd class="col-xs-8 col-md-8 col-lg-8">
+        @Html.DisplayFor(model => model.Designation)
+    </dd>
 
-            <dt class="col-md-4">
-                @Html.DisplayNameFor(model => model.Sigle)
-            </dt>
-            <dd class="col-md-8">
-                @Html.DisplayFor(model => model.Sigle)
-            </dd>
-            <dt class="col-md-4">
-                @Html.DisplayNameFor(model => model.SiteWeb)
-            </dt>
-            <dd class="col-md-8">
-                @Html.DisplayFor(model => model.SiteWeb)
-            </dd>
-            <dt class="col-md-4">
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-            <dd class="col-md-8">
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-        </dl>
+    <dt class="col-xs-4 col-md-4 col-lg-4">
+        @Html.DisplayNameFor(model => model.Sigle)
+    </dt>
+    <dd class="col-xs-8 col-md-8 col-lg-8">
+        @Html.DisplayFor(model => model.Sigle)
+    </dd>
+    <dt class="col-xs-4 col-md-4 col-lg-4">
+        @Html.DisplayNameFor(model => model.SiteWeb)
+    </dt>
+    <dd class="col-xs-8 col-md-8 col-lg-8">
+        <a href="http://@Html.DisplayFor(model => model.SiteWeb)" target="_blank">@Html.DisplayFor(model => model.SiteWeb)</a>
+    </dd>
+    <dt class="col-xs-4 col-md-4 col-lg-4">
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd class="col-xs-8 col-md-8 col-lg-8">
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+</dl>
 
-        <hr />
+<hr />
+<dl class="row col-md-12">
+    <dt class="col-md-2">
+        @Html.DisplayNameFor(model => model.DateAjout)
+    </dt>
+    <dd class="col-md-4 text-danger">
+        @Html.DisplayFor(model => model.DateAjout)
+    </dd>
+    <dt class="col-md-2">
+        Par
+    </dt>
+    <dd class="col-md-4">
+        Armelle-Eliane
+    </dd>
+</dl>
+<dl class="row col-md-12">
+    <dt class="col-md-2">
+        @Html.DisplayNameFor(model => model.DateModif)
+    </dt>
+    <dd class="col-md-4 text-success">
+        @Html.DisplayFor(model => model.DateModif)
+    </dd>
+    <dt class="col-md-2">
+        Par
+    </dt>
+    <dd class="col-md-4">
+        Armelle-Eliane
+    </dd>
 
-        <dl class="row">
+</dl>
 
-            <dt class="col-md-2">
-                @Html.DisplayNameFor(model => model.DateAjout)
-            </dt>
-            <dd class="col-md-3">
-                @Html.DisplayFor(model => model.DateAjout)
-                :
-                @Model.DateAjout.ToShortTimeString()
-            </dd>
-            <dt class="col-md-1">
-                Par
-            </dt>
-            <dd class="col-md-6">
-                Armelle-eliane
-            </dd>
-            <dt class="col-md-2">
-                @Html.DisplayNameFor(model => model.DateModif)
-            </dt>
-            <dd class="col-md-3">
-                @Html.DisplayFor(model => model.DateModif)
-                :
-                @Model.DateModif.ToShortTimeString()
-            </dd>
-            <dt class="col-md-1">
-                Par
-            </dt>
-            <dd class="col-md-6">
-                Armelle-eliane
-            </dd>
-        </dl>
-    </div>
-</div>
+
+
+
 

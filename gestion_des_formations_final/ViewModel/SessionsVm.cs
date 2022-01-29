@@ -14,11 +14,14 @@ namespace gestion_des_formations_final.Models
             FormateurSessions = new List<FormateurSession>();
         }
         public int SessionId { get; set; }
+        [Required(ErrorMessage = "Veuillez sélectionner la date de début de la formation")]
         public DateTime DateDebut { get; set; }
+        [Required(ErrorMessage = "Veuillez sélectionner la date de fin de la formation")]
         public DateTime DateFin { get; set; }
         public string Statut { get; set; }
         public int FormationId { get; set; }
         public int SalleId { get; set; }
+        [Required(ErrorMessage = "Veuillez sélectionner le formateur")]
         public int FormateurId { get; set; }
 
         public DateTime DateAjout { get; set; }

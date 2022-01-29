@@ -21,7 +21,9 @@ namespace gestion_des_formations_final.Controllers
         public IActionResult Index()
         {
             ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Nos Formations";
+            ViewData["second_title"] = "Formations";
+            ViewData["first_title"] = "Formation";
+            ViewData["title_modal"] = " détaillée";
 
             List<Formation> Formations = _context.Formation.ToList();
             return View(Formations);
@@ -41,12 +43,12 @@ namespace gestion_des_formations_final.Controllers
         public async Task<IActionResult> AjouterFormation(Formation formation)
         {
             ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Formations >  Nouvelle Formation";
+            ViewData["second_title"] = "Formations ";
             if (ModelState.IsValid)
             {
                 if (FormationExist(formation.Intitule))
                 {
-                    ViewData["message"] = "cette formation a  déjà  été enregistrée!";
+                    ViewData["message"] = "La formation " + formation.Intitule + " a déjà été enregistrée !";
                     return View(formation);
                 }
                 else
@@ -92,7 +94,7 @@ namespace gestion_des_formations_final.Controllers
         public IActionResult ModifierFormation(int Id)
         {
             ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Formations >  modifier Formation";
+            ViewData["second_title"] = "Formations";
             Formation formation = _context.Formation.Where(p => p.FormationId == Id).FirstOrDefault();
 
             return View(formation);
@@ -102,7 +104,7 @@ namespace gestion_des_formations_final.Controllers
         public IActionResult ModifierFormation(Formation formation)
         {
             ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Formations >  modifier Formation";
+            ViewData["second_title"] = "Formations";
             formation.DateModif = DateTime.Now;
             _context.Attach(formation);
             _context.Entry(formation).State = EntityState.Modified;
@@ -113,7 +115,7 @@ namespace gestion_des_formations_final.Controllers
         public async Task<IActionResult> DeleteAsync(int? id)
         {
             ViewData["Title"] = "Gestion des formations";
-            ViewData["second_title"] = "Formations >  modifier Formation";
+            ViewData["second_title"] = "Formations";
             var formation = await _context.Formation.FindAsync(id);
             _context.Formation.Remove(formation);
             await _context.SaveChangesAsync();

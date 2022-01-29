@@ -24,7 +24,8 @@ namespace gestion_des_formations_final.Controllers
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Salles";
-
+            ViewData["first_title"] = "Salle";
+            ViewData["title_modal"] = "détaillée";
             return View(await _context.Salle.ToListAsync());
         }
 
@@ -47,7 +48,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: Salles/Create
-        public IActionResult Create()
+        public IActionResult AjouterUneSalle()
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Salles";
@@ -60,13 +61,13 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Salle salle)
+        public async Task<IActionResult> AjouterUneSalle( Salle salle)
         {
             if (ModelState.IsValid)
             {
                 if (SalleExist(salle.Designation,salle.Lieu))
                 {
-                    ViewData["message"] = "cette salle existe déjà !";
+                    ViewData["message"] = "La salle "+salle.Designation+"-"+salle.Lieu+" a déjà été enregistrée !";
                     return View(salle);
                 }
                 else
@@ -75,6 +76,7 @@ namespace gestion_des_formations_final.Controllers
                     salle.DateModif = DateTime.Now;
                     _context.Add(salle);
                     await _context.SaveChangesAsync();
+                    TempData["success"] = "La salle "+salle.Designation+"-"+salle.Lieu+" a été enregistré avec succès !";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -83,7 +85,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: Salles/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> ModifierUneSalle(int? id)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Salles";
@@ -105,7 +107,7 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,  Salle salle)
+        public async Task<IActionResult> ModifierUneSalle(int id,  Salle salle)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Salles";

@@ -1,0 +1,51 @@
+﻿@model gestion_des_formations_final.Models.Organisme
+<div class="row">
+    <!-- [ form-element ] start -->
+    <div class="col-sm-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4>Modifier un organisme</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="center" asp-action="ModifierUnOrganisme">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="OrganismeId" />
+                            <div class="form-group">
+                                <label asp-for="Designation">Désignation*</label>
+                                <input type="text" asp-for="Designation" class="mb-3 form-control form-control-sm" style="text-transform:uppercase">
+                                <span asp-validation-for="Designation" class="form-text  text-danger"></span>
+                                <div class="form-group">
+                                    <label asp-for="Sigle">Sigle*</label>
+                                    <input type="text" asp-for="Sigle" class="mb-3 form-control form-control-sm" placeholder="Entrer le sigle de l'organisme">
+                                    <span asp-validation-for="Sigle" class="form-text  text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Site Web</label>
+                                    <input type="text" asp-for="SiteWeb" class="mb-3 form-control form-control-sm" placeholder="Entrer le site web de l'organisme">
+                                    <span asp-validation-for="SiteWeb" class="form-text  text-danger"></span>
+                                </div>
+   
+                                <div class="form-group">
+                                    <label asp-for="Description">Description</label>
+                                    <textarea asp-for="Description" class="form-control" id="description" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <button type="reset" class="btn  btn-danger fa-pull-left" style="margin-left:15px;"><a class="text-white" asp-controller="Organismes" asp-action="Index">Annuler</a></button>
+                            <button type="submit" class="btn  btn-success fa-pull-right">Mise à jour</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+    <!-- [ form-element ] end -->
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

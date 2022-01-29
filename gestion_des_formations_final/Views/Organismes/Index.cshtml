@@ -7,16 +7,16 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Organismes" asp-action="Create"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter un organisme</a></button>
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Organismes" asp-action="AjouterUnOrganisme"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter un organisme</a></button>
             </div>
             <div class="card-body">
                     <table id="res-config" class="display table table-striped table-hover dt-responsive nowrap" style="width:100%">
                         <thead class="text-center">
                             <tr>
-                                <th> @Html.DisplayNameFor(model => model.Sigle)</th>
                                 <th> @Html.DisplayNameFor(model => model.Designation)</th>
+                                <th> @Html.DisplayNameFor(model => model.Sigle)</th>
                                 <th> @Html.DisplayNameFor(model => model.SiteWeb)</th>
-                               
+
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -24,18 +24,18 @@
                             @foreach (var item in Model)
                             {
                             <tr>
+                                <td style="text-transform:uppercase">
+                                    @Html.DisplayFor(modelItem => item.Designation)
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Sigle)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Designation)
+                                    <a href="http://@Html.DisplayFor(modelItem => item.SiteWeb)" target="_blank">@Html.DisplayFor(modelItem => item.SiteWeb)</a>
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.SiteWeb)
-                                </td>
-                        
+
                                 <td class="text-center">
-                                    <a asp-controller="Organismes" asp-action="Edit" asp-route-id="@item.OrganismeId" class="text-success"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
+                                    <a asp-controller="Organismes" asp-action="ModifierUnOrganisme" asp-route-id="@item.OrganismeId" class="text-success"><i class="icon feather icon-edit f-16  text-c-green"></i></a>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <a onclick=" ViewAjaxCallModal('/Organismes/Details/@item.OrganismeId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal" class="text-primary"><i class="fa fa-eye"></i></a>
                                 </td>

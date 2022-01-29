@@ -36,37 +36,37 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            @if (item.Statut == "planifié")
-                            {
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Formation.Intitule)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateDebut)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateFin)
-                                </td>
+                            <tr>
+                                @if (item.Statut == "planifié")
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Formation.Intitule)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateDebut)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateFin)
+                                    </td>
 
-                                <td>
-                                    <div><label class="badge badge-light-warning">@Html.DisplayFor(modelItem => item.Statut)</label></div>
-                                </td>
+                                    <td>
+                                        <div><label class="badge badge-light-warning">@Html.DisplayFor(modelItem => item.Statut)</label></div>
+                                    </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Salle.Designation)
-                                </td>
-                                <td>
-                                    <a asp-action="ModifierUneSession" asp-route-id="@item.SessionId"><i class="icon feather icon-edit f-16 text-c-green"></i></a>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Salle.Designation)
+                                    </td>
+                                    <td>
+                                        <a asp-action="ModifierUneSession" asp-route-id="@item.SessionId"><i class="icon feather icon-edit f-16 text-c-green"></i></a>
 
-                                    <!--<a asp-action="Delete" asp-route-id="@item.SessionId"><i class="feather icon-trash-2 ml-3 f-16 text-c-red"></i></a>-->
-                                    &nbsp;
-                                    <a class="text-primary" onclick=" ViewAjaxCallModal('/Sessions/Details/@item.SessionId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
-                                    &nbsp; &nbsp;
-                                    <a href="#"><i class="fa fa-archive text-c-red"></i></a>
-                                </td>
-                            }
-                        </tr>
+                                        <!--<a asp-action="Delete" asp-route-id="@item.SessionId"><i class="feather icon-trash-2 ml-3 f-16 text-c-red"></i></a>-->
+                                        &nbsp;
+                                        <a class="text-primary" onclick=" ViewAjaxCallModal('/Sessions/Details/@item.SessionId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
+                                        &nbsp; &nbsp;
+                                        <a  onclick="Delete(@item.SessionId)"><i class="fa fa-archive text-c-red"></i></a>
+                                    </td>
+                                }
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -74,3 +74,46 @@
         </div>
     </div>
 </div>
+@section Scripts {
+
+    <script>
+        function Delete(id) {
+            sweetAlert
+                ({
+                    title: "êtes vous sûre",
+                    text: "de vouloir clôturer cette session ?",
+                    type: "Warning",
+                    dangerMode: true,
+                    buttons: ["Annuler", "Clôturer"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: "Sessions/Delete/",
+                            data:
+                            {
+                                id: id
+                            },
+                            type: "GET",
+                            success: function (data) {
+                                console.log(data);
+
+                                sweetAlert(
+                                    'Deleted',
+                                    'la clôture de cette session  a bien été éffectuée',
+                                    'success'
+                                ).then(function () {
+                                    window.location.href ="Sessions/SessionsTerminees";
+                                })
+
+                            }
+                        });
+                    } else {
+                        swal("Oops!!!!", "annulation de la clôture", "error");
+
+                    }
+
+                });
+        }
+
+    </script>
+}

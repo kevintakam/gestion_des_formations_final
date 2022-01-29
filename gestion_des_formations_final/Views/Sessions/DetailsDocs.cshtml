@@ -1,0 +1,76 @@
+﻿@model gestion_des_formations_final.Models.DocumentsVm
+
+
+<div class="row">
+    <!-- Multi-column table start -->
+    @{
+        var documents = (List<Document>)ViewData["Documents"]; // Cast the list
+       
+    }
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn  btn-primary"><a class="text-white" asp-controller="Documents" asp-action="ImporterDocument"><i class="fa fa-plus"></i>&nbsp;&nbsp;Importer un document</a></button>
+            </div>
+            <div class="card-body">
+                <table id="res-config" class="display table table-striped table-hover dt-responsive nowrap" style="width:100%">
+                    <thead class="text-center">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nom)
+                            </th>
+                            <th>
+                                Intitule
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contenu)
+                            </th>
+                            <th>
+                              Modèle
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach (var item in documents)
+                        {
+
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nom)
+                            </td>
+                            <td>
+                                @ViewBag.Formations.Formation.Intitule
+                            </td>
+                            <td>
+                                <a href="~/Documents/@Html.DisplayFor(modelItem => item.Contenu)" target="_blank">
+                                    @Html.DisplayFor(modelItem => item.Contenu)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeDocument.Intitule)
+                            </td>
+
+                            <td>
+                                <a asp-controller="Documents" asp-action="Edit" asp-route-id="@item.DocumentId"><i class="icon feather icon-edit f-16 text-c-green"></i></a>
+
+                                <!--<a asp-action="Delete" asp-route-id="@item.SessionId"><i class="feather icon-trash-2 ml-3 f-16 text-c-red"></i></a>-->
+                                &nbsp;
+                                <a class="text-primary" onclick=" ViewAjaxCallModal('/Sessions/DetailsDoc/@item.DocumentId', '#ViewModal')" data-toggle="modal" data-target="#ViewModal"><i class="fa fa-eye"></i></a>
+                                &nbsp; &nbsp;
+                            </td>
+
+                        </tr>
+                            
+                        }
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -24,6 +24,8 @@ namespace gestion_des_formations_final.Controllers
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Organismes";
+            ViewData["first_title"] = "Organisme";
+            ViewData["title_modal"] = "détaillé";
             return View(await _context.Organisme.ToListAsync());
         }
 
@@ -46,7 +48,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: Organismes/Create
-        public IActionResult Create()
+        public IActionResult AjouterUnOrganisme()
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Organismes";
@@ -58,7 +60,7 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Organisme organisme)
+        public async Task<IActionResult> AjouterUnOrganisme(Organisme organisme)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Organisme";
@@ -66,7 +68,7 @@ namespace gestion_des_formations_final.Controllers
             {
                 if (OrganismeExist(organisme.Designation))
                 {
-                    ViewData["message"] = "cet organisme existe déjà !";
+                    ViewData["message"] = "L'organisme " + organisme.Designation  + " a déjà été enregistrée !";
                     return View(organisme);
                 }
                 else
@@ -82,7 +84,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: Organismes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> ModifierUnOrganisme(int? id)
         {
             if (id == null)
             {
@@ -102,7 +104,7 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,  Organisme organisme)
+        public async Task<IActionResult> ModifierUnOrganisme(int id,  Organisme organisme)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Organismes";

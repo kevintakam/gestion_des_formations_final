@@ -30,21 +30,23 @@ namespace gestion_des_formations_final.Controllers
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Documents";
+            ViewData["first_title"] = "Document";
+            ViewData["title_modal"] = "détaillé";
             var applicationDbContext = _context.Document.Include(d => d.Session).ThenInclude(e => e.Formation).Include(d => d.TypeDocument);
             return View(await applicationDbContext.ToListAsync());
         }
 
         //GET: Importer un document
-        public async Task<ActionResult> ImporterDocumentAsync(int? id)
+        public ActionResult ImporterDocumentAsync()
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Documents > Nouveau Document";
             DocumentsVm documentsvm = new DocumentsVm();
-            var e = _context.Session.Include(f => f.Formation).Where(s => s.Statut == "planifié");
-            var typedocument = await _context.TypeDocument.FindAsync(id);
-            documentsvm.TypeDocumentId = typedocument.TypeDocumentId;
+            var e = _context.Session.Include(f => f.Formation);
+           // var typedocument = await _context.TypeDocument.FindAsync(id);
+          //  documentsvm.TypeDocumentId = typedocument.TypeDocumentId;
             ViewData["sessions"] = new SelectList(e, "SessionId", "Formation.Intitule");
-            ViewData["TypeDocumentId"] = new SelectList(_context.TypeDocument, "TypeDocumentId", "Intitule",typedocument.TypeDocumentId);
+            ViewData["TypeDocumentId"] = new SelectList(_context.TypeDocument, "TypeDocumentId", "Intitule");
            
             return View(documentsvm);
         }
@@ -168,7 +170,7 @@ namespace gestion_des_formations_final.Controllers
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Documents > Modifier Document";
 
-            var e = _context.Session.Include(f => f.Formation).Where(s => s.Statut == "planifié");
+            var e = _context.Session.Include(f => f.Formation);
 
             ViewData["sessions"] = new SelectList(e, "SessionId", "Formation.Intitule");
             ViewData["TypeDocumentId"] = new SelectList(_context.TypeDocument, "TypeDocumentId", "Intitule");

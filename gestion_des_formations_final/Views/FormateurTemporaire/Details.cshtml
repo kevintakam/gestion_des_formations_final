@@ -43,7 +43,7 @@
         <dt class="col-sm-4 col-md-4 col-lg-4">
             @Html.DisplayNameFor(model => model.Statut)
         </dt>
-        @if (Model.Statut =="Approuvé")
+        @if (Model.Statut == "Approuvé")
         {
             <dd class="col-sm-8 col-md-8 col-lg-8 text-success">
                 @Html.DisplayFor(model => model.Statut)
@@ -55,7 +55,6 @@
                 @Html.DisplayFor(model => model.Statut)...
             </dd>
         }
-
         <dt class="col-sm-4 col-md-4 col-lg-4">
             @Html.DisplayNameFor(model => model.NbreAnneeExperience)
         </dt>
@@ -94,38 +93,36 @@
         </dd>
     </dl>
     <hr />
-
-    <dl class="row">
-
+    <dl class="row col-md-12">
         <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.DateAjout)
         </dt>
-        <dd class="col-md-3">
+        <dd class="col-md-4 text-danger">
             @Html.DisplayFor(model => model.DateAjout)
-            :
-            @Model.DateAjout.ToShortTimeString()
         </dd>
-        <dt class="col-md-1">
+        <dt class="col-md-2">
             Par
         </dt>
-        <dd class="col-md-6">
-            Armelle-Eliane
+        <dd class="col-md-4">
+            Audrey Demgne
         </dd>
-
+    </dl>
+    <dl class="row col-md-12">
         <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.DateModif)
         </dt>
-        <dd class="col-md-3">
+        <dd class="col-md-4 text-success">
             @Html.DisplayFor(model => model.DateModif)
-            :
-            @Model.DateModif.ToShortTimeString()
         </dd>
-        <dt class="col-md-1">
+        <dt class="col-md-2">
             Par
         </dt>
-        <dd class="col-md-6">
-            Armelle-Eliane
+        <dd class="col-md-4">
+            Audrey Demgne
         </dd>
+
     </dl>
-</div>
+
+
+
 

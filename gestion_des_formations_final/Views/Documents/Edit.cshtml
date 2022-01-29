@@ -31,12 +31,12 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Contenu" class="control-label">Contenu<span class="text-c-blue"></span></label>
-                                <input asp-for="Contenu" class="form-control" type="file" />
+                                <input asp-for="Contenu" class="form-control" />
                                 <span asp-validation-for="Contenu" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <button type="reset" class="btn  btn-danger"><a class="text-white" asp-controller="Documents" asp-action="Index"> Annuler</a></button>
-                                <input type="submit" value="Mise à jour" class="btn  btn-primary fa-pull-right" />
+                                <button type="reset" class="btn  btn-danger fa-pull-left"><a class="text-white" asp-controller="Documents" asp-action="Index"> Annuler</a></button>
+                                <input type="submit" value="Mise à jour" class="btn  btn-success fa-pull-right" />
                             </div>
                         </form>
                     </div>

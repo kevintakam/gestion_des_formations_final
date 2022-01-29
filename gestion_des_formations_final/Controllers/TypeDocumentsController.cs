@@ -24,9 +24,11 @@ namespace gestion_des_formations_final.Controllers
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Documents";
+            ViewData["first_title"] = "Type document";
+            ViewData["title_modal"] = "détaillé";
             return View(await _context.TypeDocument.ToListAsync());
         }
-        public async Task<IActionResult> Home()
+        public async Task<IActionResult> ChoixModeleDocument()
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Documents";
@@ -54,7 +56,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: TypeDocuments/Create
-        public IActionResult Create()
+        public IActionResult AjouterUnTypeDocument()
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Documents";
@@ -66,7 +68,7 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TypeDocumentId,Intitule")] TypeDocument typeDocument)
+        public async Task<IActionResult> AjouterUnTypeDocument([Bind("TypeDocumentId,Intitule")] TypeDocument typeDocument)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Documents";
@@ -74,7 +76,7 @@ namespace gestion_des_formations_final.Controllers
             {
                 if (TypedocumentExist(typeDocument.Intitule))
                 {
-                    ViewData["message"] = "ce type de document existe déjà !";
+                    ViewData["message"] = "Le type de document " + typeDocument.Intitule + " a déjà été enregistrée !";
                     return View(typeDocument);
                 }
                 else
@@ -90,7 +92,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: TypeDocuments/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> ModifierUnTypeDocument(int? id)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Documents";
@@ -112,7 +114,7 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TypeDocumentId,Intitule")] TypeDocument typeDocument)
+        public async Task<IActionResult> ModifierUnTypeDocument(int id, [Bind("TypeDocumentId,Intitule,Description")] TypeDocument typeDocument)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Documents";

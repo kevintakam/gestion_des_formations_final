@@ -24,6 +24,8 @@ namespace gestion_des_formations_final.Controllers
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Certifications";
+            ViewData["first_title"] = "Certification";
+            ViewData["title_modal"] = "détaillée";
             var applicationDbContext = _context.Certification.Include(c => c.Organisme);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -48,7 +50,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: Certifications/Create
-        public IActionResult Create()
+        public IActionResult AjouterUneCertification()
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Certifications";
@@ -61,13 +63,13 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CertificationId,Designation,OrganismeId,Description")] Certification certification)
+        public async Task<IActionResult> AjouterUnecertification([Bind("CertificationId,Designation,OrganismeId,Description")] Certification certification)
         {
             if (ModelState.IsValid)
             {
                 if (CertificationExist(certification.Designation, certification.OrganismeId))
                 {
-                    ViewData["message"] = "cette salle existe déjà !";
+                    ViewData["message"] = "La certification " + certification.Designation + " a déjà été enregistrée !";
                     return View(certification);
                 }
                 else
@@ -84,7 +86,7 @@ namespace gestion_des_formations_final.Controllers
         }
 
         // GET: Certifications/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> ModifierUneCertification(int? id)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Certifications";
@@ -107,7 +109,7 @@ namespace gestion_des_formations_final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CertificationId,Designation,OrganismeId,Description")] Certification certification)
+        public async Task<IActionResult> ModifierUneCertification(int id,  Certification certification)
         {
             ViewData["Title"] = "Gestion des formations";
             ViewData["second_title"] = "Certifications";

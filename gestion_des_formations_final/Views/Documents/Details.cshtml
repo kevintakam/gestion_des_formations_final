@@ -1,86 +1,72 @@
 ﻿@model gestion_des_formations_final.Models.Document
 
 
-@{ 
+@{
     Layout = null;
 }
 
-<div>
-    <dl class="row">
-        <div>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Nom)
-        </dt>
-        <br />
-        <br />
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Contenu)
-        </dt>
-        <br />
-        <br />
-        <br />
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TypeDocument)
-        </dt>
-        <br />
-        <br />
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Session)
-        </dt>
-</div>
-<div>
-    <dd class="col-sm-3">
+<dl class="row col-md-12">
+    <dt class="col-sm-4">
+        @Html.DisplayNameFor(model => model.Nom)
+    </dt>
+    <dd class="col-sm-8">
         @Html.DisplayFor(model => model.Nom)
     </dd>
-    <br /><br />
-    <dd class="col-sm-3">
+    <br />
+    <br />
+    <dt class="col-sm-4">
+        @Html.DisplayNameFor(model => model.Contenu)
+    </dt>
+    <dd class="col-sm-8">
         <a href="~/Documents/@Html.DisplayFor(model => model.Contenu)" target="_blank"><i class="fas fa-file-alt" style="max-width:300px;"></i></a>
     </dd>
-    <br /><br />
-    <dd class="col-sm-3">
-        @Html.DisplayFor(model => model.TypeDocument.Intitule)
-    </dd>
     <br />
-    <dd class="col-sm-3">
+    <br />
+    <dt class="col-sm-4">
+        @Html.DisplayNameFor(model => model.Session)
+    </dt>
+    <dd class="col-sm-8">
         @Html.DisplayFor(model => model.Session.Formation.Intitule)
     </dd>
-</div>
-    </dl>
+    <br />
+    <br />
+    <dt class="col-sm-4">
+        @Html.DisplayNameFor(model => model.TypeDocument)
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(model => model.TypeDocument.Intitule)
+    </dd>
+</dl>
+<hr />
+<dl class="row col-md-12">
+    <dt class="col-md-2">
+        @Html.DisplayNameFor(model => model.DateAjout)
+    </dt>
+    <dd class="col-md-4 text-danger">
+        @Html.DisplayFor(model => model.DateAjout)
+    </dd>
+    <dt class="col-md-2">
+        Par
+    </dt>
+    <dd class="col-md-4">
+        Audrey Demgne
+    </dd>
+</dl>
+<dl class="row col-md-12">
+    <dt class="col-md-2">
+        @Html.DisplayNameFor(model => model.DateModif)
+    </dt>
+    <dd class="col-md-4 text-success">
+        @Html.DisplayFor(model => model.DateModif)
+    </dd>
+    <dt class="col-md-2">
+        Par
+    </dt>
+    <dd class="col-md-4">
+        Audrey Demgne
+    </dd>
+
+</dl>
 
 
-    <hr />
-
-    <dl class="row">
-
-        <dt class="col-md-2">
-            @Html.DisplayNameFor(model => model.DateAjout)
-        </dt>
-        <dd class="col-md-3">
-            @Html.DisplayFor(model => model.DateAjout)
-            :
-            @Model.DateAjout.ToShortTimeString()
-        </dd>
-        <dt class="col-md-1">
-            Par
-        </dt>
-        <dd class="col-md-6">
-            Armelle-eliane
-        </dd>
-        <dt class="col-md-2">
-            @Html.DisplayNameFor(model => model.DateModif)
-        </dt>
-        <dd class="col-md-3">
-            @Html.DisplayFor(model => model.DateModif)
-            :
-            @Model.DateModif.ToShortTimeString()
-        </dd>
-        <dt class="col-md-1">
-            Par
-        </dt>
-        <dd class="col-md-6">
-            Armelle-eliane
-        </dd>
-    </dl>
-</div>

@@ -27,8 +27,10 @@
                                 <input asp-for="Contenu" class="form-control" type="file" />
                                 <span asp-validation-for="Contenu" class="text-danger"></span>
                             </div>
-                            <button type="reset" class="btn  btn-danger fa-pull-right" style="margin-left:15px;"><a class="text-white" asp-controller="Documents" asp-action="Index">Annuler</a></button>
-                            <button type="submit" class="btn  btn-primary fa-pull-right">Ajouter</button>
+                            <div class="form-group">
+                                <button type="reset" class="btn  btn-danger fa-pull-left" style="margin-left:15px;"><a class="text-white" asp-controller="Documents" asp-action="Index">Annuler</a></button>
+                                <button type="submit" class="btn  btn-success fa-pull-right">Ajouter</button>
+                            </div>
                         </form>
                     </div>
                 </div>
